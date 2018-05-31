@@ -1,5 +1,11 @@
 {
   "name": "QandA",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@rails/webpacker": "3.5",
+    "react-on-rails": "11.0.7"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "2.11.2"
+  }
 }
