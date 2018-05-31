@@ -16,7 +16,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'react_on_rails', '11.0.0'
-gem "haml-rails", "~> 1.0"
+gem 'haml-rails', '~> 1.0'
+gem 'bootstrap', '~> 4.1.1'
+gem 'jquery-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
