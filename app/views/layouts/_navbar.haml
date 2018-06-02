@@ -1,3 +1,7 @@
+%nav.navbar.navbar-expand-lg.navbar-dark.bg-warning.justify-content-between
+  %form.form-inline.my-2.my-lg-0
+    %input.form-control.mr-sm-2{"aria-label" => "Search", :placeholder => "Enter Event Password", :type => "search"}/
+    %button.btn.btn-outline-dark.my-2.my-sm-0{:type => "submit"} Join!
 %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.sticky-top
   %a.navbar-brand{:href => "/"}
     = image_tag "askdemos-logo-1.png", size: "25x25", class: "mx-auto d-inline align-top", :alt => "avatar"
@@ -8,10 +12,13 @@
     %ul.navbar-nav.mr-auto
       %li.nav-item
         = link_to 'Home', root_path, class: 'nav-link'
-      %li.nav-item
-        %a.nav-link{ href: '#' } Q&A
     %ul.navbar-nav.ml-auto
       %li.nav-item
-        %a.nav-link{ href: '#' } Log In
+        %a.nav-link.text-white{ href: 'features' } Features
       %li.nav-item
-        %a.nav-link{ href: '#' } Sign Up
+        %a.nav-link.text-white{ href: 'pricing' } Pricing
+      %btn.btn-active.btn-warning
+        %li.nav-item
+          %a.nav-link.text-dark{ href: '#' } Sign Up
+      %li.nav-item
+        %a.nav-link{ href: '#' } Log In
