@@ -14,4 +14,7 @@ class HomeController < ApplicationController
   def customer_agreement;  end
 
   def security;  end
+    
+  def jobs; end
+
 end

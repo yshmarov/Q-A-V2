@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'terms_of_service', to: 'home#terms_of_service'
   get 'customer_agreement', to: 'home#customer_agreement'
   get 'security', to: 'home#security'
+  get 'jobs', to: 'home#jobs'
 
   get 'hello_world', to: 'hello_world#index'
 
