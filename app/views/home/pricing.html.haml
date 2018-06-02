@@ -1,2 +1,58 @@
-%h1 Home#pricing
-%p Find me in app/views/home/pricing.html.haml
+.pricing-header.px-3.py-3.pt-md-5.pb-md-4.mx-auto.text-center
+  %h1.display-4 Pricing
+  %p.lead Your event data is always private and encrypted
+.container
+  .card-deck.mb-3.text-center
+    .card.mb-4.box-shadow
+      .card-header
+        %h4.my-0.font-weight-normal Free
+      .card-body
+        %h1.card-title.pricing-card-title
+          $0
+          %small.text-muted / event
+        %ul.list-unstyled.mt-3.mb-4
+          %li 1 Q&A session
+          %li 1 Poll
+          %li Private event with password
+          %li Insights
+          %li
+            Basic support
+            %small.text-muted - 24h response time
+        %button.btn.btn-lg.btn-block.btn-outline-warning{:type => "button"}
+          %b Sign up for free
+    .card.mb-4.box-shadow
+      .card-header
+        %h4.my-0.font-weight-normal Pro
+      .card-body
+        %h1.card-title.pricing-card-title
+          $15
+          %small.text-muted / event
+        %ul.list-unstyled.mt-3.mb-4
+          %li 1 Q&A session
+          %li 10 Poll questions
+          %li Private event with password
+          %li
+            Insights
+            %small.text-muted - PDF & Excel reports
+          %li
+            Priority support
+            %small.text-muted - 1h response time
+        %button.btn.btn-lg.btn-block.btn-warning{:type => "button"}
+          %b Get started
+    .card.mb-4.box-shadow
+      .card-header
+        %h4.my-0.font-weight-normal Enterprise
+      .card-body
+        %h1.card-title.pricing-card-title
+          $29
+          %small.text-muted / event
+        %ul.list-unstyled.mt-3.mb-4
+          %h4 Pro +
+          %p
+          %li unlimited Q&A sessions
+          %li Logo branding
+          %li
+            Online training
+            %small.text-muted - 1 hour
+        %button.btn.btn-lg.btn-block.btn-warning{:type => "button"} 
+          %b Contact us

@@ -1,5 +1,6 @@
 / Footer
 %footer.page-footer.font-small.stylish-color-dark.pt-4.mt-4
+  %hr/
   / Footer Links
   .container.text-center.text-md-left
     / Grid row
@@ -10,8 +11,10 @@
         %h5.font-weight-bold.text-uppercase.mt-3.mb-4
           /Footer Content
         %p
-          © 2018 Copyright:
-          %a{:href => "https://askdemos.com/"} Askdemos.com
+          © #{Time.now.year} Copyright - Askdemos Ltd. All rights reserved -
+          %a{:href => "http://www.askdemos.com/"} askdemos.com
+        %p 13 Konstruktorska str. 02-651, Warsaw, Poland
+        %p hello@askdemos.com
       / Grid column
       %hr.clearfix.w-100.d-md-none/
       / Grid column
