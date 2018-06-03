@@ -20,9 +20,9 @@ gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
 gem 'devise'
 gem 'awesome_print', '~> 1.8'
+gem 'pg'
 
 group :development, :test do
-  gem 'pg'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
@@ -40,7 +40,6 @@ group :test do
 end
 
 group :production do
-  gem 'pg'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
