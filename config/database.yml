@@ -1,7 +1,7 @@
 default: &default
   adapter: postgresql
-  username: test
-  password: 1234test
+  username:
+  password:
   host: localhost
 
 development:
@@ -14,4 +14,5 @@ test:
 
 production:
   <<: *default
-  database: qanda_production
+  url: <%= ENV['DATABASE_URL'] %>
+  pool: <%= ENV["DB_POOL"] || ENV['MAX_THREADS'] || 25 %>
