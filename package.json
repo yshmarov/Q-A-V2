@@ -21,7 +21,7 @@
   },
   "scripts": {},
   "engines": {
-    "node": "10.2.1"
+    "node": "8.11.2"
   },
   "description": "## Build with",
   "version": "1.0.0",
