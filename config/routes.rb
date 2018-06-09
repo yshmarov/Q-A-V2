@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'customer_agreement', to: 'static_pages#customer_agreement'
   get 'security', to: 'static_pages#security'
   get 'jobs', to: 'static_pages#jobs'
+  get 'dashboard', to: 'static_pages#dashboard'
 
   get 'hello_world', to: 'hello_world#index'
 end

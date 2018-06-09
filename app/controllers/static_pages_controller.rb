@@ -1,6 +1,8 @@
 class StaticPagesController < ApplicationController
   def pricing; end
 
+  def dashboard; end
+
   def features; end
 
   def contact_us; end
