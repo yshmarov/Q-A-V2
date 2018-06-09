@@ -1,4 +1,4 @@
-class HomeController < ApplicationController
+class StaticPagesController < ApplicationController
   def pricing; end
 
   def features; end
