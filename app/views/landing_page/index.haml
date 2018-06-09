@@ -1,12 +1,105 @@
-.jumbotron.bg-warning
-  %br
-  %br
-  .row
-    .col-lg
-      %h4
-        Askdemos helps to manage questions at events.
-        /With Askdemos, speakers can now effectively engage with your audience and answer meaningful questions.
-    .col
-
-%h1 Home#index
-%p Find me in app/views/landing_page/index.haml
+</div>
+.card.bg-warning
+  .container
+    %br
+    .row
+      .col-lg.text-center
+        %h4
+          Askdemos helps your audience to ask meaningful questions. 
+          /makes it simple for your audience to ask questions, vote on polls, and give their feedback.
+          /No installation or downloads required
+          /Because questions matter
+          /Questions that matter
+          /Drive meaningful conversation with us
+          /Askdemos helps to manage questions at events.
+          /With Askdemos, speakers can now effectively engage with your audience and answer meaningful questions.
+          %p
+          = link_to 'Try now! Create a free event', new_user_registration_path, class: 'btn btn-lg btn-success'
+      .col
+        .embed-responsive.embed-responsive-16by9
+          %iframe.embed-responsive-item{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/H16ldnm_-ak?rel=0", :width => "560"}
+    %br
+.card.bg-light
+  .container
+    %br
+      %h3.text-center Engage with:
+      %h5
+        %p Q&A: let your audience submit and vote on questions.
+        %p Polls: live voting and charts.
+        /Live Polls keep your conference dynamic and interactive.
+        /FEATURES
+        /Interactive Agenda shows who’s speaking and what’s happening.
+        /Live Polls engage employees and lighten the mood.
+        /Engagement Insights help to gauge employee consensus.
+        /Engagement Insights provides data that helps you understand your customers.
+        /Live Polls excite and involve customers for a more immersive brand experience.
+        /%p Surveys: gather feedback collated in PDF and Excel formats.
+.card.bg-warning
+  .container
+    %br
+      %h3.text-center So simple!
+      %h5
+        %p Gather instand feedback from your audience!
+        %p No installations or downloads required.
+        /, vote on polls, and give their feedback
+.card.bg-light
+  .container
+    %p
+    %h3.text-center Event types
+    %h5
+      %p
+        At PR campaigns
+        %small
+          %br details
+      %p At Press Conferences
+      %p
+        At team meetings
+        %small
+          %br It can be difficult to get employees to speak up.
+          Empower them with Live Q&A to ask questions anonymously, so you can understand what is happening on the ground.
+      %p At customer engagement events
+      /You can’t win over your customers unless you truly know them.
+      /With live interactivity, you’ll connect with your customers while getting insights for sharper follow-ups.
+      %p At concerts
+      %p At conferences
+      /You’ve lined up some outstanding speakers. Your curious audience can’t wait to learn from them.
+      /Now give every attendee the opportunity to be involved in Live Q&A, and drive discussions that are rewarding.
+      /Workshops
+      /Give participants a platform to contribute ideas and make learning fun and collaborative.
+      /Conference Calls
+      /Have productive calls. Gather questions quickly and address them on the same call.
+      /Tech Talks
+      /Encourage sharing and learning with an easy, fun way to post and vote on questions.
+      /Webinars
+      /Engage and learn more about participants even virtually with crowdsourced Q&A and polls.
+      /Education
+      /Make your lectures and classes fun and interactive. Keep students engaged and thinking.
+.card.bg-light
+  .container
+    %br
+      %h3.text-center Don't just take our word for it
+      %hr
+      %h5
+        .row.text-center
+          .col-4
+            = image_tag "pg-askdemos-partner.png", style: 'height:auto;width:75%;', :alt => "pg-askdemos-partner"
+          .col-4
+            = image_tag "startup-weekend-askdemos-partner-logo.png", style: 'height:auto;width:75%;', :alt => "startup-weekend-askdemos-partner"
+          .col-4
+            = image_tag "visuality-askdemos-partner-logo.png", style: 'height:auto;width:75%;', :alt => "visuality-askdemos-partner"
+        %br
+        .row.text-center
+          .col-4
+            = image_tag "ewl-askdemos-partner.png", style: 'height:auto;width:75%;', :alt => "ewl-askdemos-partner"
+          .col-4
+            = image_tag "vistula-askdemos-partner-logo.png", style: 'height:auto;width:35%;', :alt => "vistula-askdemos-partner"
+            /= image_tag "techstars-askdemos-partner-logo.png", style: 'height:auto;width:75%;', :alt => "techstars-askdemos-partner"
+          .col-4
+            = image_tag "spark-solutions-askdemos-partner-logo.png", style: 'height:auto;width:75%;', :alt => "spark-solutions-askdemos-partner"
+        /%p Procter and Gamble
+        /%p FLC London
+        /%p StartupWeekend
+        /%p Spark solutions
+        /%p Visuality
+        /%p Vistula
+        /%p EWL

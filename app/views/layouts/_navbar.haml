@@ -24,7 +24,8 @@
         %li.nav-item
           = link_to 'Log In', new_user_session_path, class: 'nav-link'
       - else
-
+        /%li.nav-item
+        /  = link_to 'My Dashboard', root_path, class: 'nav-link'
         %li.nav-item.dropdown
           %a#navbarDropdown.nav-link.dropdown-toggle.text-white{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
             = current_user.username
