@@ -4,9 +4,15 @@
     %br
     .row
       .col-lg.text-left
-        %h2.display-5
-          Askdemos helps your audience
-          to ask meaningful questions. 
+        /.font-weight-light
+        %h1.display-5
+          %b Askdemos brings
+          %br
+          %b Democracy to the land
+          %br
+          %b of Q&A sessions!
+          /Askdemos helps your audience
+          /to ask meaningful questions. 
           /makes it simple for your audience to ask questions, vote on polls, and give their feedback.
           /No installation or downloads required
           /Because questions matter
@@ -14,6 +20,19 @@
           /Drive meaningful conversation with us
           /Askdemos helps to manage questions at events.
           /With Askdemos, speakers can now effectively engage with your audience and answer meaningful questions.
+          /Live voting and charts.
+          /FEATURES
+          /Interactive Agenda shows who’s speaking and what’s happening.
+          /Live Polls engage employees and lighten the mood.
+          /Engagement Insights help to gauge employee consensus.
+          /Engagement Insights provides data that helps you understand your customers.
+          /Live Polls excite and involve customers for a more immersive brand experience.
+          /%p Surveys: gather feedback collated in PDF and Excel formats.
+          /Ask questions. Vote on questions. Live projection.
+          /All questions matter
+          /There is no such thing as a stupid question
+          /You may not have time to answer all the questions in one go, but you will be able to have an overview on all of them. And if needed - release a follow-up with the answers!
+          /, vote on polls, and give their feedback
           %p
           = link_to 'Try now! Create a free event', new_user_registration_path, class: 'btn btn-lg btn-warning'
       .col
@@ -26,27 +45,27 @@
       .col
         .card
           .my-3.py-3
-            %h2.display-5 Q&A
+            %i.fa.fa-question-circle{:style => "font-size:80px;color:orange;"}
+            %h2.display-5 Question sessions
             %p.lead Let your audience submit and vote on questions.
             = link_to 'See how Q&A works', features_path, class: 'btn btn-warning'
             %p
-            %small.text-muted Ask questions. Vote on questions. Live projection.
+            %small.text-muted 
+              There is no such thing as a stupid question. 
+              %br But there is such a thing as limited time. 
+              %p We let the audience to choose the questions that matter most.
       .col
         .card
           .my-3.py-3
-            %h2.display-5 Polls
-            %p.lead Live voting and charts.
+            %i.fa.fa-dashboard.fa-5x{:style => "font-size:80px;color:orange;"}
+            %h2.display-5 Live Polls
+            %p.lead Ask your audience questions. Let them vote on live charts!
             = link_to 'See how Polls work', features_path, class: 'btn btn-warning'
             %p
-            %small.text-muted Engage everyone. Present like a rockstar!
-    /Live Polls keep your conference dynamic and interactive.
-    /FEATURES
-    /Interactive Agenda shows who’s speaking and what’s happening.
-    /Live Polls engage employees and lighten the mood.
-    /Engagement Insights help to gauge employee consensus.
-    /Engagement Insights provides data that helps you understand your customers.
-    /Live Polls excite and involve customers for a more immersive brand experience.
-    /%p Surveys: gather feedback collated in PDF and Excel formats.
+            %small.text-muted 
+              Get instant measurable insights.
+              %br Keep your conference dynamic and interactive.
+              %p Engage everyone. Present like a rockstar!
     %br
     %h2.display-5 So simple!
     %br
@@ -56,9 +75,8 @@
           %h5
             %p.lead Gather instand feedback from your audience!
             %p.lead No installations or downloads required.
-            /, vote on polls, and give their feedback
         .col
-          [Picture of how audience can join]
+          %i.fa.fa-mobile{:style => "font-size:200px;color:orange;"}
     %br
     %h2.display-5 Boost any event
     %br
@@ -106,26 +124,31 @@
     .card-group
       .card
         .card-body
+          %i.fa.fa-user-secret.fa-3x{:style => "font-size:50px;color:orange;"}
           %h5.card-title Anonimity
           %p.card-text
             %small.text-muted Participants can comfortably raise questions anonymously.
       .card
         .card-body
+          %i.fa.fa-lock.fa-3x{:style => "font-size:50px;color:orange;"}
           %h5.card-title Security
           %p.card-text
             %small.text-muted You own your data. You can do anything with it.
       .card
         .card-body
+          %i.fa.fa-signal.fa-3x{:style => "font-size:50px;color:orange;"}
           %h5.card-title Analytics
           %p.card-text
             %small.text-muted Detaled engagement reports. Export to PDF and Excel.
       .card
         .card-body
+          %i.fa.fa-sitemap.fa-3x{:style => "font-size:50px;color:orange;"}
           %h5.card-title Team access
           %p.card-text
             %small.text-muted Assign users with different access rights.
       .card
         .card-body
+          %i.fa.fa-phone.fa-3x{:style => "font-size:50px;color:orange;"}
           %h5.card-title 24/7 Support
           %p.card-text
             %small.text-muted Our support is on duty.
