@@ -16,4 +16,7 @@ class StaticPagesController < ApplicationController
   def security; end
 
   def jobs; end
+
+  def events; end
+
 end
