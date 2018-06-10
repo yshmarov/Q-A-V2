@@ -18,7 +18,7 @@ class EventsController < ApplicationController
 
     if @event.save
       flash[:success] = 'Successfully created'
-      render :edit
+      render :show
     else
       flash_errors
       render :new
@@ -37,8 +37,9 @@ class EventsController < ApplicationController
 
   def destroy
     @event.destroy
-
-    respond_with @event.destroy
+    @events = Event.all
+    flash[:success] = 'Event was successfully deleted'
+    render :index
   end
 
   private

@@ -1,0 +1,9 @@
+= render 'shared/flash_messages' if flash.any?
+
+%h1= @event.title
+%p= @event.description
+%p= @event.starts_at
+%p= @event.ends_at
+%p= @event.time_zone
+%p= @event.event_code
+%p= @event.user.email
