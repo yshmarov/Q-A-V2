@@ -11,7 +11,11 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body.bg-light
-    = render 'layouts/navbar'
+    - unless current_user
+      = render 'layouts/navbar'
+    - else
+      = render 'layouts/user_navbar'
     .container
       = yield
-      = render 'layouts/footer'
+      - unless current_user
+        = render 'layouts/footer'
