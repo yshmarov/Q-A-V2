@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'security', to: 'static_pages#security'
   get 'jobs', to: 'static_pages#jobs'
   get 'dashboard', to: 'static_pages#dashboard'
+  get 'events', to: 'static_pages#events'
 
   get 'hello_world', to: 'hello_world#index'
 end

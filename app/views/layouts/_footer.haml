@@ -29,10 +29,9 @@
         / Links
         %h5.font-weight-bold.text-uppercase.mt-3.mb-4 Product
         %ul.list-unstyled
-          %li
-            %a{:href => "features"} Features
-          %li
-            %a{:href => "pricing"} Pricing
+          = link_to 'Features', features_path
+          = link_to 'Events', events_path
+          = link_to 'Pricing', pricing_path
       / Grid column
       %hr.clearfix.w-100.d-md-none/
       / Grid column
@@ -40,14 +39,10 @@
         / Links
         %h5.font-weight-bold.text-uppercase.mt-3.mb-4 Legal
         %ul.list-unstyled
-          %li
-            %a{:href => "privacy_policy"} Privacy policy
-          %li
-            %a{:href => "terms_of_service"} Terms of service
-          %li
-            %a{:href => "customer_agreement"} Customer agreement
-          %li
-            %a{:href => "security"} Security
+          = link_to 'Pricing policy', privacy_policy_path
+          = link_to 'Customer agreement', customer_agreement_path
+          = link_to 'Terms of service', terms_of_service_path
+          = link_to 'Security', security_path
       / Grid column
       %hr.clearfix.w-100.d-md-none/
       / Grid column
@@ -55,10 +50,9 @@
         / Links
         %h5.font-weight-bold.text-uppercase.mt-3.mb-4 About us
         %ul.list-unstyled
-          %li
-            %a{:href => "contact_us"} Contact us
-          %li
-            %a{:href => "jobs"} Jobs
+          = link_to 'Contact us', contact_us_path
+          %br
+          = link_to 'Jobs', jobs_path
       / Grid column
     / Grid row
   / Footer Links
