@@ -17,7 +17,7 @@
           = current_user.company_name
         .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
           .dropdown-item
-            = link_to 'My events', root_path, class: 'nav-link text-dark'
+            = link_to 'My events', events_path, class: 'nav-link text-dark'
           .dropdown-item
             = link_to 'Settings', edit_user_registration_path, class: 'nav-link text-dark'
           .dropdown-item
