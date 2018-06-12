@@ -18,7 +18,7 @@ class EventsController < ApplicationController
 
     if @event.save
       flash[:success] = 'Successfully created'
-      render :show
+      redirect_to event_path(@event)
     else
       flash_errors
       render :new
@@ -29,7 +29,7 @@ class EventsController < ApplicationController
     if @event.update(event_params)
       @events = Event.where(user: current_user)
       flash[:success] = 'Successfully updated'
-      render :index
+      redirect_to events_path
     else
       flash_errors
       render :edit
@@ -40,7 +40,7 @@ class EventsController < ApplicationController
     @event.destroy
     @events = Event.all
     flash[:success] = 'Event was successfully deleted'
-    render :index
+    redirect_to events_path
   end
 
   private
