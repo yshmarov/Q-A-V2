@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   get 'jobs', to: 'static_pages#jobs'
   get 'event_types', to: 'static_pages#event_types'
 
+  resources :questions, only: [:create, :edit, :destroy]
+
   authenticate :user do
     resources :events
   end

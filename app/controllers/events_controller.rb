@@ -5,7 +5,9 @@ class EventsController < ApplicationController
     @events = Event.where(user: current_user)
   end
 
-  def show; end
+  def show
+    @question = Question.new
+  end
 
   def new
     @event = Event.new
