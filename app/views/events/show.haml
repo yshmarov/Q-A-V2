@@ -18,3 +18,22 @@
           = link_to 'Edit', edit_event_path(@event), class: 'btn btn-primary'
           = link_to 'Delete', event_path(@event), method: :delete, data: { confirm: "Are you sure?"}, class: 'btn btn-danger'
           = link_to 'Back', events_path, class: 'btn btn-secondary'
+
+    .card
+      .card-body.questions-container
+        %h1 Questions:
+        - @event.questions.each do |question|
+          .question
+            .contents
+              %h4= question.contents
+            .author
+              asked by:
+              = question&.user&.email
+
+        %h1 Add a question
+        = form_for @question do |f|
+          = f.hidden_field(:event_id, value: @event.id)
+          = f.hidden_field(:user_id, value: current_user&.id)
+          .form-group.inline
+            = f.submit 'Submit', class: 'btn btn-info'
+            = f.text_field :contents, autofocus: true, class: 'form-control'
