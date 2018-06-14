@@ -1,28 +1,75 @@
 = render 'shared/flash_messages' if flash.any?
-
-.row.event-container
-  .col-md-2
-  .col-md-8
-    .card
-      %h2.card-header.bg-warning
-        Events
-      .card-body
-        %table.table
-          %thead
-            %tr
-              %th{:scope => 'col'} Title
-              %th{:scope => 'col'} Description
-              %th{:scope => 'col'} Created By
-              %th{:scope => 'col', :colspan => '3'} Actions
-          %tbody
-            - @events.each do |event|
-              %tr
-                %th{:scope => 'row'}= event.title
-                %th{:scope => 'row'}= event.description
-                %th{:scope => 'row'}= event.user.email
-                %th{:scope => 'row'}= link_to 'Show', event
-                %th{:scope => 'row'}= link_to 'Edit', edit_event_path(event)
-                %th{:scope => 'row'}= link_to 'Destroy', event, method: :delete,
-                  data: { confirm: 'Are you sure?' }
-        .links
-          = link_to 'Create New', new_event_path, class: 'btn btn-primary'
+%br
+%h3
+  My Q&A events:
+  = current_user.events.count
+%p
+- unless current_user.events.any?
+  = link_to 'Create Free Q&A', new_event_path, class: 'btn btn-warning'
+- else
+  = link_to 'Create Q&A', new_event_path, class: 'btn btn-warning'
+%p
+.row
+  .col
+    - @events.each do |event|
+      .card.container
+        %p
+        = link_to event.title, events_path(event)
+        %p
+        = event.starts_at
+        to
+        = event.ends_at
+        %p
+        Pass:
+        %b= event.event_code
+        %p
+        by
+        = event.user.username
+        %p
+      %p
+  .col
+    .row
+      .col-lg-6
+        .card.container
+          %p
+          Purchase
+          %p
+          Select a plan and add-ons
+          %p
+          Upgrade plan
+          %p
+          Buy 1 Q&A event
+          %p
+          Buy 1 poll
+          %p
+          Select a plan and add-ons
+          %p
+      .col
+        .card.container
+          %p
+          Create a free event
+          %p
+          [1/1] remaining
+          %p
+%br
+.card
+  %h2.card-header.bg-warning
+    Events
+  .card-body
+    %table.table
+      %thead
+        %tr
+          %th{:scope => 'col'} Title
+          %th{:scope => 'col'} Description
+          %th{:scope => 'col'} Created By
+          %th{:scope => 'col', :colspan => '3'} Actions
+      %tbody
+        - @events.each do |event|
+          %tr
+            %th{:scope => 'row'}= event.title
+            %th{:scope => 'row'}= event.description
+            %th{:scope => 'row'}= event.user.email
+            %th{:scope => 'row'}= link_to 'Show', event
+            %th{:scope => 'row'}= link_to 'Edit', edit_event_path(event)
+            %th{:scope => 'row'}= link_to 'Destroy', event, method: :delete,
+              data: { confirm: 'Are you sure?' }
