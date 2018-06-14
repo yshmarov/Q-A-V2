@@ -14,8 +14,6 @@ Rails.application.routes.draw do
   get 'jobs', to: 'static_pages#jobs'
   get 'event_types', to: 'static_pages#event_types'
 
-  get 'hello_world', to: 'hello_world#index'
-
   authenticate :user do
     resources :events
   end
