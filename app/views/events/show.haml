@@ -34,6 +34,6 @@
         = form_for @question do |f|
           = f.hidden_field(:event_id, value: @event.id)
           = f.hidden_field(:user_id, value: current_user&.id)
-          .form-group.inline
-            = f.submit 'Submit', class: 'btn btn-info'
-            = f.text_field :contents, autofocus: true, class: 'form-control'
+          .form-group
+            = f.text_area :contents, autofocus: true, class: 'form-control'
+            = f.submit 'Submit', class: 'btn btn-info add-question-submit'
