@@ -1,8 +1,9 @@
 class QuestionsController < ApplicationController
-  before_action :find_event, only: :create
+  before_action :find_question, only: [:edit, :destroy, :update]
 
   def create
     @question = Question.new(question_params)
+    @event = Event.find_by(id: question_params[:event_id])
 
     if @question.save
       flash[:success] = 'Successfully created'
@@ -13,18 +14,33 @@ class QuestionsController < ApplicationController
     redirect_to event_path(@event)
   end
 
-  def update
+  def edit; end
 
+  def update
+    if @question.update(question_params)
+      flash[:success] = 'Successfully updated'
+      redirect_to event_path(@question.event)
+    else
+      flash[:error] = 'Unable to edit'
+      render :edit
+    end
   end
 
   def destroy
+    @event = @question.event
 
+    if @question.destroy
+      flash[:success] = 'Question was successfully deleted'
+    else
+      flash[:error] = 'Unable to delete question'
+    end
+    redirect_to event_path(@event)
   end
 
   private
 
-  def find_event
-    @event = Event.find_by(id: question_params[:event_id])
+  def find_question
+    @question = Question.find(params[:id])
   end
 
   def question_params

@@ -21,14 +21,19 @@
 
     .card
       .card-body.questions-container
-        %h1 Questions:
-        - @event.questions.each do |question|
-          .question
-            .contents
-              %h4= question.contents
-            .author
-              asked by:
-              = question&.user&.email
+        - if @event.questions.any?
+          %h1 Questions:
+          - @event.questions.each do |question|
+            .question
+              .contents
+                %h4= question.contents
+              .author
+                asked by:
+                = email = question&.user&.email
+              - if email.present? && email.eql?(question&.user&.email)
+                = link_to 'Edit', edit_question_path(question), class: 'btn btn-primary'
+                = link_to 'Delete', question_path(question), method: :delete,
+                  data: { confirm: 'Are you sure?'}, class: 'btn btn-danger'
 
         %h1 Add a question
         = form_for @question do |f|
