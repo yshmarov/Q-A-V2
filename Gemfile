@@ -22,6 +22,7 @@ gem 'devise'
 gem 'awesome_print', '~> 1.8'
 gem 'pg'
 gem 'rollbar'
+gem 'acts_as_votable', '~> 0.11.1'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

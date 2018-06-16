@@ -14,7 +14,12 @@ Rails.application.routes.draw do
   get 'jobs', to: 'static_pages#jobs'
   get 'event_types', to: 'static_pages#event_types'
 
-  resources :questions, only: [:create, :edit, :update, :destroy]
+  resources :questions, only: [:create, :edit, :update, :destroy] do
+    member do
+      put 'upvote', to: 'questions#upvote'
+      put 'downvote', to: 'questions#downvote'
+    end
+  end
 
   authenticate :user do
     resources :events

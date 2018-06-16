@@ -34,6 +34,15 @@
                 = link_to 'Edit', edit_question_path(question), class: 'btn btn-primary'
                 = link_to 'Delete', question_path(question), method: :delete,
                   data: { confirm: 'Are you sure?'}, class: 'btn btn-danger'
+              .votes
+                .row
+                  .col-md-1{style: "font-size: 30px; color:#606060; text-align: center;"}
+                    = link_to upvote_question_path(question), method: :put do
+                      %i.fa.fa-caret-up.col-md-12
+                    %span.col-md-12= question.weighted_score
+                    = link_to downvote_question_path(question), method: :put do
+                      %i.fa.fa-caret-down.col-md-12
+
 
         %h1 Add a question
         = form_for @question do |f|
