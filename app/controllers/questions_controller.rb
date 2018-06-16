@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :find_question, only: [:edit, :destroy, :update]
+  before_action :find_question, only: %i[edit destroy update upvote downvote]
 
   def create
     @question = Question.new(question_params)
@@ -37,10 +37,21 @@ class QuestionsController < ApplicationController
     redirect_to event_path(@event)
   end
 
+  def upvote
+    @question.upvote_by current_user
+    redirect_to event_path(@event)
+  end
+
+  def downvote
+    @question.downvote_by current_user
+    redirect_to event_path(@event)
+  end
+
   private
 
   def find_question
     @question = Question.find(params[:id])
+    @event = @question.event
   end
 
   def question_params
