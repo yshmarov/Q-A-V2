@@ -8,10 +8,11 @@
 %p
 .row
   .col-lg-4
-    - unless current_user.events.any?
-      = link_to 'Create Free Q&A', new_event_path, class: 'btn btn-warning btn-block'
-    - else
-      = link_to 'Create Q&A', new_event_path, class: 'btn btn-warning btn-block'
+    = link_to 'Create New', new_event_path, class: 'btn btn-warning btn-block'
+    /- unless current_user.events.any?
+    /  = link_to 'Create Free Q&A', new_event_path, class: 'btn btn-warning btn-block'
+    /- else
+    /  = link_to 'Create Q&A', new_event_path, class: 'btn btn-warning btn-block'
     %p
     - @events.each do |event|
       .card
