@@ -21,7 +21,8 @@
         .card-body
           %b
             Pass:
-            = event.event_code.upcase
+            - if event.event_code?
+              = event.event_code.upcase
           %p
           .font-weight-light.font-italic
             = simple_format(event.description)
@@ -35,6 +36,7 @@
             .col-lg
               = link_to event_path(event), class: 'badge badge-light' do
                 = fa_icon "thumbs-up"
+                impressions
             .col-lg
               .text-right
                 .font-weight-light.font-italic
