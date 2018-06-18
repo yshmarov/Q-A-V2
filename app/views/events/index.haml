@@ -21,8 +21,8 @@
         .card-body
           %b
             Pass:
-            - if event.event_code?
-              = event.event_code.upcase
+            - if event.password?
+              = event.password.upcase
           - if event.description?
             %p
             .font-weight-light.font-italic

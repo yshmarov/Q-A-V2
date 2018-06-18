@@ -13,7 +13,7 @@
         %p= "Starts at: #{@event.starts_at}"
         %p= "Ends at: #{@event.ends_at}"
         %p= "Time zone: #{@event.time_zone}"
-        %p= "Event code: #{@event.event_code}"
+        %p= "Password: #{@event.password}"
         %p= "Created by: #{@event.user.email}"
         .links
           = link_to 'Edit', edit_event_path(@event), class: 'btn btn-primary'

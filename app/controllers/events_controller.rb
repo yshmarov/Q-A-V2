@@ -58,7 +58,7 @@ class EventsController < ApplicationController
 
   def event_params
     params[:event].permit(:title, :description, :starts_at, :ends_at, :user,
-                          :company_name, :country, :time_zone, :event_code,
+                          :company_name, :country, :time_zone, :password,
                           :user_id)
   end
 end
