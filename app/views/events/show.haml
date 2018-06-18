@@ -8,7 +8,8 @@
         Event
       .card-body
         %h1= "Title: #{@event.title}"
-        %p= "Description: #{@event.description}"
+        - if @event.description?
+          %p= "Description: #{@event.description}"
         %p= "Starts at: #{@event.starts_at}"
         %p= "Ends at: #{@event.ends_at}"
         %p= "Time zone: #{@event.time_zone}"

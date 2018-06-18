@@ -23,9 +23,10 @@
             Pass:
             - if event.event_code?
               = event.event_code.upcase
-          %p
-          .font-weight-light.font-italic
-            = simple_format(event.description)
+          - if event.description?
+            %p
+            .font-weight-light.font-italic
+              = simple_format(event.description)
           %p
           %small.text-muted
             = event.starts_at.strftime('%e %B')
@@ -35,8 +36,8 @@
           .row.bg-light
             .col-lg
               = link_to event_path(event), class: 'badge badge-light' do
-                = fa_icon "thumbs-up"
-                impressions
+                /= fa_icon "impressions"
+                = pluralize(event.questions.count, 'question')
             .col-lg
               .text-right
                 .font-weight-light.font-italic
