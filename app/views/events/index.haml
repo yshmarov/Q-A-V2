@@ -15,9 +15,13 @@
     /  = link_to 'Create Q&A', new_event_path, class: 'btn btn-warning btn-block'
     %p
     - @events.each do |event|
-      .card
+      .card.border-warning
         %h5.card-header.bg-light
           = link_to event.title, event, class: 'text-dark'
+          .pull-right
+            %h6
+              %small
+                = status_label(event.status)
         .card-body
           %b
             Pass:
@@ -44,8 +48,8 @@
                   = time_ago_in_words(event.created_at)
                   ago by
                   - if event.user_id == current_user.id
-                    %span.badge.badge-success
-                      You
+                    /%span.badge.badge-success
+                    You
                   - else
                     = event.user.username
       %p  
@@ -72,7 +76,7 @@
   %h2.card-header.bg-warning
     Events
   .card-body
-    %table.table
+    %table.table.table-responsive
       %thead
         %tr
           %th{:scope => 'col'} Title
