@@ -15,7 +15,7 @@
     /  = link_to 'Create Q&A', new_event_path, class: 'btn btn-warning btn-block'
     %p
     - @events.each do |event|
-      .card.border-warning
+      .card.border-warning.mb-3
         %h5.card-header.bg-light
           = link_to event.title, event, class: 'text-dark'
           .pull-right
@@ -75,21 +75,34 @@
 .card
   %h2.card-header.bg-warning
     Events
-  .card-body
-    %table.table.table-responsive
-      %thead
+  %table.table.table-responsive.table-dark.table-hover
+    %thead
+      %tr
+        %th{:scope => 'col'} Title
+        %th{:scope => 'col'} Password
+        %th{:scope => 'col'} Starts
+        %th{:scope => 'col'} Ends
+        %th{:scope => 'col'} Duration
+        %th{:scope => 'col'} Time before start
+        %th{:scope => 'col'} Status
+        /%th{:scope => 'col'} Description
+        /%th{:scope => 'col'} Created By
+        %th{:scope => 'col', :colspan => '3'} Actions
+    %tbody
+      - @events.each do |event|
         %tr
-          %th{:scope => 'col'} Title
-          %th{:scope => 'col'} Description
-          %th{:scope => 'col'} Created By
-          %th{:scope => 'col', :colspan => '3'} Actions
-      %tbody
-        - @events.each do |event|
-          %tr
-            %th{:scope => 'row'}= event.title
-            %th{:scope => 'row'}= event.description
-            %th{:scope => 'row'}= event.user.email
-            %th{:scope => 'row'}= link_to 'Show', event
-            %th{:scope => 'row'}= link_to 'Edit', edit_event_path(event)
-            %th{:scope => 'row'}= link_to 'Destroy', event, method: :delete,
-              data: { confirm: 'Are you sure?' }
+          %th{:scope => 'row'}= event.title
+          %th{:scope => 'row'}= event.password
+          %th{:scope => 'row'}= event.starts_at
+          %th{:scope => 'row'}= event.ends_at
+          %th{:scope => 'row'}= distance_of_time_in_words event.ends_at, event.starts_at
+          %th{:scope => 'row'}
+            - if event.starts_at > Time.now
+              = distance_of_time_in_words Time.now, event.starts_at
+          %th{:scope => 'row'}= status_label(event.status)
+          /%th{:scope => 'row'}= event.description
+          /%th{:scope => 'row'}= event.user.email
+          %th{:scope => 'row'}= link_to 'Show', event
+          %th{:scope => 'row'}= link_to 'Edit', edit_event_path(event)
+          %th{:scope => 'row'}= link_to 'Destroy', event, method: :delete,
+            data: { confirm: 'Are you sure?' }
