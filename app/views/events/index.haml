@@ -43,8 +43,8 @@
         %th Title
         %th Description
         %th Password
-        %th Starts
-        %th Ends
+        %th= sort_link(@q, :starts_at, "Starts")
+        %th= sort_link(@q, :ends_at, "Ends")
         %th Duration
         %th Status
         %th Created
@@ -54,8 +54,10 @@
       - @events.each do |event|
         %tr
           %td
-            /= fa_icon "impressions"
-            = pluralize(event.questions.count, 'question')
+            .badge.badge-secondary
+              .fa.fa-question
+              /= fa_icon "impressions"
+              = pluralize(event.questions.count, 'question')
           %td
           %td
           %td= link_to event.title, event

@@ -7,7 +7,9 @@ class EventsController < ApplicationController
 	end
 
   def index
-    @events = Event.where(user: current_user)
+    #@events = Event.where(user: current_user)
+    @q = Event.where(user: current_user).ransack(params[:q])
+    @events = @q.result(distinct: true)
   end
 
   def show
