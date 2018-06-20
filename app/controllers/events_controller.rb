@@ -1,5 +1,10 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :start_now]
+
+  def start_now
+		@event.update_attribute(:starts_at, Time.now)
+		redirect_to @event, notice: "Q&A started!"
+	end
 
   def index
     @events = Event.where(user: current_user)

@@ -71,6 +71,7 @@
             - if event.starts_at > Time.now
               starts in
               = distance_of_time_in_words Time.now, event.starts_at
+              = button_to "Start now", start_now_event_path(event), method: :patch
           %td= "#{time_ago_in_words(event.created_at)} ago by #{event.user.username}"
           %td= "#{time_ago_in_words(event.updated_at)} ago"
           %td

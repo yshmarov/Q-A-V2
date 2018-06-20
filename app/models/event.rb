@@ -15,7 +15,7 @@ class Event < ApplicationRecord
     elsif starts_at < Time.now && ends_at < Time.now
       "finished"
     else
-      HAHA
+      'ERROR'
     end
   end
 

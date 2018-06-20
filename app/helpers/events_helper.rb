@@ -12,6 +12,8 @@ module EventsHelper
 				content_tag(:span, status.titleize, class: 'badge badge-success')
 			when 'finished'
 				content_tag(:span, status.titleize, class: 'badge badge-secondary')
+			when 'ERROR'
+				content_tag(:span, status.titleize, class: 'badge badge-danger')
 			end
   end
 end
