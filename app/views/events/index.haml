@@ -22,6 +22,17 @@
     Upgrade plan
     [1/1] remaining
 %br
+
+
+.text-white
+  %form.form-inline.my-2.my-lg-0
+    = search_form_for @q, url: events_path do |f|
+      .mr-sm-2
+        = f.text_field :title_cont, class: 'form-control', placeholder: 'Find Event', autofocus: true
+      %button.btn.btn-outline-success.my-2.my-sm-0{:type => "submit"} Search
+      .my-2.my-sm-0
+        = link_to "<i class='fa fa-refresh'></i>".html_safe, events_path, class: 'btn btn-outline-secondary'
+%br
 .card
   %h2.card-header.bg-warning
     .row

@@ -7,6 +7,8 @@ class Event < ApplicationRecord
   validates :password, uniqueness: true
   validate :starts_at_cannot_be_in_the_past, on: :create
 
+  default_scope { order(created_at: :desc) }
+  
   def status
     if starts_at > Time.now && ends_at > Time.now
       "not started"
