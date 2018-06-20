@@ -1,59 +1,8 @@
 %br
-  
 = render 'shared/flash_messages' if flash.any?
-%br
-%h3
-  My Q&A events:
-  = current_user.events.count
-%p
+%p  
 .row
-  .col-lg-4
-    = link_to 'Create New', new_event_path, class: 'btn btn-warning btn-block'
-    /- unless current_user.events.any?
-    /  = link_to 'Create Free Q&A', new_event_path, class: 'btn btn-warning btn-block'
-    /- else
-    /  = link_to 'Create Q&A', new_event_path, class: 'btn btn-warning btn-block'
-    %p
-    - @events.each do |event|
-      .card.border-warning.mb-3
-        %h5.card-header.bg-light
-          = link_to event.title, event, class: 'text-dark'
-          .pull-right
-            %h6
-              %small
-                = status_label(event.status)
-        .card-body
-          %b
-            Pass:
-            - if event.password?
-              = event.password.upcase
-          - if event.description?
-            %p
-            .font-weight-light.font-italic
-              = simple_format(event.description)
-          %p
-          %small.text-muted
-            = event.starts_at.strftime('%e %B')
-            \-
-            = event.ends_at.strftime('%e %B %Y (%z)')
-        %small.container
-          .row.bg-light
-            .col-lg
-              = link_to event_path(event), class: 'badge badge-light' do
-                /= fa_icon "impressions"
-                = pluralize(event.questions.count, 'question')
-            .col-lg
-              .text-right
-                .font-weight-light.font-italic
-                  = time_ago_in_words(event.created_at)
-                  ago by
-                  - if event.user_id == current_user.id
-                    /%span.badge.badge-success
-                    You
-                  - else
-                    = event.user.username
-      %p  
-  .col-lg-4
+  .col-4
     .card.container
       %p
       Select a plan and add-ons.
@@ -61,6 +10,7 @@
       = link_to 'Purchase', new_event_path, class: 'btn btn-warning btn-block disabled'
       %p
     %p
+  .col-4
     .card.container
       %p
       Explore paid features of Askdemos with up to 10 participants.
@@ -68,41 +18,71 @@
       = link_to 'Start free DEMO', new_event_path, class: 'btn btn-warning btn-block disabled'
       %p
     %p
-  .col-lg-4
+  .col-4
     Upgrade plan
     [1/1] remaining
 %br
 .card
   %h2.card-header.bg-warning
-    Events
-  %table.table.table-responsive.table-dark.table-hover
+    .row
+      .col
+        My Events:
+        = current_user.events.count
+      .col
+        = link_to 'Create New', new_event_path, class: 'btn btn-info pull-right'
+        /- unless current_user.events.any?
+        /  = link_to 'Create Free Q&A', new_event_path, class: 'btn btn-warning btn-block'
+        /- else
+        /  = link_to 'Create Q&A', new_event_path, class: 'btn btn-warning btn-block'
+  %table.table.table-responsive.table-hover
     %thead
       %tr
-        %th{:scope => 'col'} Title
-        %th{:scope => 'col'} Password
-        %th{:scope => 'col'} Starts
-        %th{:scope => 'col'} Ends
-        %th{:scope => 'col'} Duration
-        %th{:scope => 'col'} Time before start
-        %th{:scope => 'col'} Status
-        /%th{:scope => 'col'} Description
-        /%th{:scope => 'col'} Created By
-        %th{:scope => 'col', :colspan => '3'} Actions
+        %th Questions
+        %th Respondents
+        %th Votes
+        %th Title
+        %th Description
+        %th Password
+        %th Starts
+        %th Ends
+        %th Duration
+        %th Status
+        %th Created
+        %th Last updated
+        %th{:scope => 'col', :colspan => '2'} Actions
     %tbody
       - @events.each do |event|
         %tr
-          %th{:scope => 'row'}= event.title
-          %th{:scope => 'row'}= event.password
-          %th{:scope => 'row'}= event.starts_at
-          %th{:scope => 'row'}= event.ends_at
-          %th{:scope => 'row'}= distance_of_time_in_words event.ends_at, event.starts_at
-          %th{:scope => 'row'}
+          %td
+            /= fa_icon "impressions"
+            = pluralize(event.questions.count, 'question')
+          %td
+          %td
+          %td= link_to event.title, event
+          %td
+            .font-weight-light.font-italic
+              = simple_format(event.description)
+          %td= event.password.upcase
+          %td= event.starts_at.strftime('%e-%b %Y, %H:%M (%z)')
+          %td= event.ends_at.strftime('%e-%b %Y, %H:%M')
+          %td= distance_of_time_in_words event.ends_at, event.starts_at
+          %td
+            = status_label(event.status)
             - if event.starts_at > Time.now
+              starts in
               = distance_of_time_in_words Time.now, event.starts_at
-          %th{:scope => 'row'}= status_label(event.status)
-          /%th{:scope => 'row'}= event.description
-          /%th{:scope => 'row'}= event.user.email
-          %th{:scope => 'row'}= link_to 'Show', event
-          %th{:scope => 'row'}= link_to 'Edit', edit_event_path(event)
-          %th{:scope => 'row'}= link_to 'Destroy', event, method: :delete,
-            data: { confirm: 'Are you sure?' }
+          %td= "#{time_ago_in_words(event.created_at)} ago by #{event.user.username}"
+          %td= "#{time_ago_in_words(event.updated_at)} ago"
+          %td
+            /= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }
+            /= link_to '', edit_event_path(event), class: "btn btn-success fa fa-pencil btn-xs", title: 'Show Client', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+            = link_to edit_event_path(event) do
+              .btn.btn-outline-secondary
+                .fa.fa-pencil
+                Edit
+          %td
+            = link_to event, method: :delete, data: { confirm: 'Are you sure?' } do 
+              .btn.btn-outline-secondary
+                .fa.fa-trash
+                Destroy
+%br
