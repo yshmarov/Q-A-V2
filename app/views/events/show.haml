@@ -4,10 +4,9 @@
   .col-md-2
   .col-md-8
     .card
-      %h2.card-header.bg-warning
-        Event
+      %h2.card-header.bg-warning.text-center
+        = "#{@event.title}"
       .card-body
-        %h1= "Title: #{@event.title}"
         - if @event.description?
           %p= "Description: #{@event.description}"
         %p= "Starts at: #{@event.starts_at}"
@@ -19,36 +18,47 @@
           = link_to 'Edit', edit_event_path(@event), class: 'btn btn-primary'
           = link_to 'Delete', event_path(@event), method: :delete, data: { confirm: "Are you sure?"}, class: 'btn btn-danger'
           = link_to 'Back', events_path, class: 'btn btn-secondary'
-
     .card
-      .card-body.questions-container
-        - if @event.questions.any?
-          %h1 Questions:
-          - @event.questions.each do |question|
-            .question
-              .contents
-                %h4= question.contents
-              .author
-                asked by:
-                = email = question&.user&.email
-              - if email.present? && email.eql?(question&.user&.email)
-                = link_to 'Edit', edit_question_path(question), class: 'btn btn-primary'
-                = link_to 'Delete', question_path(question), method: :delete,
-                  data: { confirm: 'Are you sure?'}, class: 'btn btn-danger'
-              .votes
-                .row
-                  .col-md-1{style: "font-size: 30px; color:#606060; text-align: center;"}
-                    = link_to upvote_question_path(question), method: :put do
-                      %i.fa.fa-caret-up.col-md-12
-                    %span.col-md-12= question.weighted_score
-                    = link_to downvote_question_path(question), method: :put do
-                      %i.fa.fa-caret-down.col-md-12
-
-
-        %h1 Add a question
+      .card-header.bg-warning
+        /%h1 Add a question
         = form_for @question do |f|
           = f.hidden_field(:event_id, value: @event.id)
           = f.hidden_field(:user_id, value: current_user&.id)
           .form-group
-            = f.text_area :contents, autofocus: true, class: 'form-control'
+            /= f.text_area :contents, autofocus: true, class: 'form-control', placeholder: "Enter your question here"
+            = f.text_area :contents, autofocus: true, class: 'form-control', placeholder: "Do you have a new question?"
             = f.submit 'Submit', class: 'btn btn-info add-question-submit'
+      .card-body
+        - if @event.questions.any?
+          .text-center
+            %h3 Questions
+          - @event.questions.each do |question|
+            .card.bg-warning.container
+              .row
+                .col-lg-auto
+                  = link_to upvote_question_path(question), method: :put do
+                    %i.fa.fa-thumbs-up.col-md-12
+                  %span= pluralize(question.weighted_score, 'vote')
+                .col-lg
+                  .pull-left
+                    %h4= question.contents
+            %p
+/.card-body.questions-container
+/  - if @event.questions.any?
+/    %h1 Questions:
+/    - @event.questions.each do |question|
+/      .question
+/        .contents
+/          %h4= question.contents
+/        .author
+/          asked by:
+/          = email = question&.user&.email
+/        - if email.present? && email.eql?(question&.user&.email)
+/          = link_to 'Edit', edit_question_path(question), class: 'btn btn-primary'
+/          = link_to 'Delete', question_path(question), method: :delete,
+/            data: { confirm: 'Are you sure?'}, class: 'btn btn-danger'
+/        .votes
+/          .row
+/            .col-md-1{style: "font-size: 30px; color:#606060; text-align: center;"}
+/              = link_to upvote_question_path(question), method: :put do
+/                %i.fa.fa-caret-up.col-md-12
