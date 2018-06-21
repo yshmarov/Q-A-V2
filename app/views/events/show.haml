@@ -9,10 +9,11 @@
         %p= "Description: #{@event.description}"
       - if @event.user_id == current_user.id
         .card-body
+          %p
+            %b= "Password: #{@event.password.upcase}"
           %p= "Starts at: #{@event.starts_at}"
           %p= "Ends at: #{@event.ends_at}"
           %p= "Time zone: #{@event.time_zone}"
-          %p= "Password: #{@event.password}"
           %p= "Created by: #{@event.user.email}"
           .links
             = link_to 'Edit', edit_event_path(@event), class: 'btn btn-primary'

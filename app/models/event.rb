@@ -2,13 +2,17 @@ class Event < ApplicationRecord
   belongs_to :user
   has_many :questions
 
-  validates :title, :password, :starts_at, :ends_at, :user, presence: true
-  validates :title, :description, length: { maximum: 100 }
+  validates :title, :starts_at, :ends_at, :user, presence: true
+  #validates :title, :password, :starts_at, :ends_at, :user, presence: true
+  validates :title, length: { maximum: 25 }
+  validates :description, length: { maximum: 250 }
   validates :password, uniqueness: true
   validate :starts_at_cannot_be_in_the_past
   validate :ends_at_can_not_be_before_starts_at
 
   default_scope { order(created_at: :desc) }
+
+  before_create :set_password
   
   def status
     if starts_at > Time.now && ends_at > Time.now
@@ -22,7 +26,20 @@ class Event < ApplicationRecord
     end
   end
 
+
   private
+
+  def set_password
+    self.password = generate_token
+  end
+
+  def generate_token
+    loop do
+      #token = SecureRandom.hex(6)
+      token = rand(999999)
+      break token unless Event.where(password: token).exists?
+    end
+  end
 
   def starts_at_cannot_be_in_the_past
     if starts_at.present? && starts_at <= Time.now

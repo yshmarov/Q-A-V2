@@ -45,7 +45,7 @@ class EventsController < ApplicationController
     if @event.update(event_params)
       @events = Event.where(user: current_user)
       flash[:success] = 'Successfully updated'
-      redirect_to events_path
+      redirect_to event_path(@event)
     else
       flash_errors
       render :edit
