@@ -1,26 +1,26 @@
 = render 'shared/flash_messages' if flash.any?
-
 .row.event-container
   .col-md-2
   .col-md-8
     .card
       %h2.card-header.bg-warning.text-center
         = "#{@event.title}"
-      .card-body
-        - if @event.description?
-          %p= "Description: #{@event.description}"
-        %p= "Starts at: #{@event.starts_at}"
-        %p= "Ends at: #{@event.ends_at}"
-        %p= "Time zone: #{@event.time_zone}"
-        %p= "Password: #{@event.password}"
-        %p= "Created by: #{@event.user.email}"
-        .links
-          = link_to 'Edit', edit_event_path(@event), class: 'btn btn-primary'
-          = link_to 'Delete', event_path(@event), method: :delete, data: { confirm: "Are you sure?"}, class: 'btn btn-danger'
-          = link_to 'Back', events_path, class: 'btn btn-secondary'
+      - if @event.description?
+        %p= "Description: #{@event.description}"
+      - if @event.user_id == current_user.id
+        .card-body
+          %p
+            %b= "Password: #{@event.password.upcase}"
+          %p= "Starts at: #{@event.starts_at}"
+          %p= "Ends at: #{@event.ends_at}"
+          %p= "Time zone: #{@event.time_zone}"
+          %p= "Created by: #{@event.user.email}"
+          .links
+            = link_to 'Edit', edit_event_path(@event), class: 'btn btn-primary'
+            = link_to 'Delete', event_path(@event), method: :delete, data: { confirm: "Are you sure?"}, class: 'btn btn-danger'
+            = link_to 'Back', events_path, class: 'btn btn-secondary'
     .card
       .card-header.bg-warning
-        /%h1 Add a question
         = form_for @question do |f|
           = f.hidden_field(:event_id, value: @event.id)
           = f.hidden_field(:user_id, value: current_user&.id)
@@ -31,17 +31,21 @@
       .card-body
         - if @event.questions.any?
           .text-center
-            %h3 Questions
+            %h3
+              = pluralize(@event.questions.count, 'Question')
           - @questions.each do |question|
             .card.bg-warning.container
               .row
                 .col-lg-auto
                   = link_to upvote_question_path(question), method: :put do
-                    %i.fa.fa-thumbs-up.col-md-12
+                    .col-md-12
+                      /.btn.btn-outline-success
+                      /%i.fa.fa-thumbs-up{:style => "font-size:30px;color:white;"}
+                      %i.fa.fa-thumbs-up{:style => "font-size:25px;"}
                   %span= pluralize(question.weighted_score, 'vote')
                 .col-lg
-                  .pull-left
-                    %h4= question.contents
+                  /.pull-left
+                  %h4= question.contents
             %p
 /.card-body.questions-container
 /  - if @event.questions.any?

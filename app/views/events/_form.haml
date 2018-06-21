@@ -4,14 +4,19 @@
     = f.label 'Title:', class: 'col-md-3 col-form-label'
     .col-md-9
       = f.text_field :title, autofocus: true, class: 'form-control'
-  .form-group.row
-    = f.label 'Password:', class: 'col-md-3 col-form-label'
-    .col-md-9
-      = f.text_field :password, class: 'form-control'
+  /.form-group.row
+  /  = f.label 'Password:', class: 'col-md-3 col-form-label'
+  /  .col-md-9
+  /    = f.text_field :password, class: 'form-control'
   /.form-group.row
   /  = f.label 'Description:', class: 'col-md-3 col-form-label'
   /  .col-md-9
   /    = f.text_field :description, class: 'form-control'
+  .form-group.row
+    .col-md-3.col-form-label
+    .col-md-9.col-form-label
+      .text-left
+        Participants can ask questions and vote in this time period. You can change it later.
   .form-group.row
     = f.label 'Starts at:', class: 'col-md-3 col-form-label'
     .col-md-9
@@ -29,5 +34,5 @@
     .col-md-9
       = link_to 'Cancel', events_path, class: 'btn btn-secondary'
       = f.submit 'Submit', class: 'btn btn-info'
-.links
-  = link_to 'Back', events_path, class: 'btn btn-secondary'
+/.links
+/  = link_to 'Back', events_path, class: 'btn btn-secondary'
