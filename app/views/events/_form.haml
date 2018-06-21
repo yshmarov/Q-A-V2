@@ -25,6 +25,7 @@
     = f.label 'Ends at:', class: 'col-md-3 col-form-label'
     .col-md-9
       = f.datetime_select :ends_at, minute_step: 15
+      /= f.date_field :ends_at, value: @event.ends_at || (Time.now + 10.days).strftime('%Y-%m-%d'), class: "form-control"
   .form-group.row
     = f.label 'Event Time zone:', class: 'col-md-3 col-form-label'
     .col-md-9
