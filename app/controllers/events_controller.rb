@@ -14,6 +14,8 @@ class EventsController < ApplicationController
 
   def show
     @question = Question.new
+    @questions = @event.questions
+    #@questions = @event.questions.order(:cached_weighted_score => :desc)
   end
 
   def new

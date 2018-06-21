@@ -32,7 +32,7 @@
         - if @event.questions.any?
           .text-center
             %h3 Questions
-          - @event.questions.each do |question|
+          - @questions.each do |question|
             .card.bg-warning.container
               .row
                 .col-lg-auto
