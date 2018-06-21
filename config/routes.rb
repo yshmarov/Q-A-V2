@@ -22,6 +22,11 @@ Rails.application.routes.draw do
   end
 
   authenticate :user do
-    resources :events
+    resources :events do
+    	member do
+    		patch :start_now
+  		end
+		end
   end
+
 end

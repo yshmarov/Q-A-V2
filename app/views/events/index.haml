@@ -1,54 +1,8 @@
 %br
-  
 = render 'shared/flash_messages' if flash.any?
-%br
-%h3
-  My Q&A events:
-  = current_user.events.count
-%p
+%p  
 .row
-  .col-lg-4
-    = link_to 'Create New', new_event_path, class: 'btn btn-warning btn-block'
-    /- unless current_user.events.any?
-    /  = link_to 'Create Free Q&A', new_event_path, class: 'btn btn-warning btn-block'
-    /- else
-    /  = link_to 'Create Q&A', new_event_path, class: 'btn btn-warning btn-block'
-    %p
-    - @events.each do |event|
-      .card
-        %h5.card-header.bg-light
-          = link_to event.title, event, class: 'text-dark'
-        .card-body
-          %b
-            Pass:
-            - if event.event_code?
-              = event.event_code.upcase
-          %p
-          .font-weight-light.font-italic
-            = simple_format(event.description)
-          %p
-          %small.text-muted
-            = event.starts_at.strftime('%e %B')
-            \-
-            = event.ends_at.strftime('%e %B %Y (%z)')
-        %small.container
-          .row.bg-light
-            .col-lg
-              = link_to event_path(event), class: 'badge badge-light' do
-                = fa_icon "thumbs-up"
-                impressions
-            .col-lg
-              .text-right
-                .font-weight-light.font-italic
-                  = time_ago_in_words(event.created_at)
-                  ago by
-                  - if event.user_id == current_user.id
-                    %span.badge.badge-success
-                      You
-                  - else
-                    = event.user.username
-      %p  
-  .col-lg-4
+  .col-4
     .card.container
       %p
       Select a plan and add-ons.
@@ -56,6 +10,7 @@
       = link_to 'Purchase', new_event_path, class: 'btn btn-warning btn-block disabled'
       %p
     %p
+  .col-4
     .card.container
       %p
       Explore paid features of Askdemos with up to 10 participants.
@@ -63,28 +18,85 @@
       = link_to 'Start free DEMO', new_event_path, class: 'btn btn-warning btn-block disabled'
       %p
     %p
-  .col-lg-4
+  .col-4
     Upgrade plan
     [1/1] remaining
 %br
+
+
+.text-white
+  %form.form-inline.my-2.my-lg-0
+    = search_form_for @q, url: events_path do |f|
+      .mr-sm-2
+        = f.text_field :title_cont, class: 'form-control', placeholder: 'Find Event', autofocus: true
+      %button.btn.btn-outline-success.my-2.my-sm-0{:type => "submit"} Search
+      .my-2.my-sm-0
+        = link_to "<i class='fa fa-refresh'></i>".html_safe, events_path, class: 'btn btn-outline-secondary'
+%br
 .card
   %h2.card-header.bg-warning
-    Events
-  .card-body
-    %table.table
-      %thead
+    .row
+      .col
+        My Events:
+        = current_user.events.count
+      .col
+        = link_to 'Create New', new_event_path, class: 'btn btn-info pull-right'
+        /- unless current_user.events.any?
+        /  = link_to 'Create Free Q&A', new_event_path, class: 'btn btn-warning btn-block'
+        /- else
+        /  = link_to 'Create Q&A', new_event_path, class: 'btn btn-warning btn-block'
+  %table.table.table-responsive.table-hover
+    %thead
+      %tr
+        %th Questions
+        %th Respondents
+        %th Votes
+        %th Title
+        %th Description
+        %th Password
+        %th= sort_link(@q, :starts_at, "Starts")
+        %th= sort_link(@q, :ends_at, "Ends")
+        %th Duration
+        %th Status
+        %th Created
+        %th Last updated
+        %th{:scope => 'col', :colspan => '2'} Actions
+    %tbody
+      - @events.each do |event|
         %tr
-          %th{:scope => 'col'} Title
-          %th{:scope => 'col'} Description
-          %th{:scope => 'col'} Created By
-          %th{:scope => 'col', :colspan => '3'} Actions
-      %tbody
-        - @events.each do |event|
-          %tr
-            %th{:scope => 'row'}= event.title
-            %th{:scope => 'row'}= event.description
-            %th{:scope => 'row'}= event.user.email
-            %th{:scope => 'row'}= link_to 'Show', event
-            %th{:scope => 'row'}= link_to 'Edit', edit_event_path(event)
-            %th{:scope => 'row'}= link_to 'Destroy', event, method: :delete,
-              data: { confirm: 'Are you sure?' }
+          %td
+            .badge.badge-secondary
+              .fa.fa-question
+              /= fa_icon "impressions"
+              = pluralize(event.questions.count, 'question')
+          %td
+          %td
+          %td= link_to event.title, event
+          %td
+            .font-weight-light.font-italic
+              = simple_format(event.description)
+          %td= event.password.upcase
+          %td= event.starts_at.strftime('%e-%b %Y, %H:%M (%z)')
+          %td= event.ends_at.strftime('%e-%b %Y, %H:%M')
+          %td= distance_of_time_in_words event.ends_at, event.starts_at
+          %td
+            = status_label(event.status)
+            - if event.starts_at > Time.now
+              starts in
+              = distance_of_time_in_words Time.now, event.starts_at
+              = button_to "Start now", start_now_event_path(event), method: :patch
+          %td= "#{time_ago_in_words(event.created_at)} ago by #{event.user.username}"
+          %td= "#{time_ago_in_words(event.updated_at)} ago"
+          %td
+            /= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }
+            /= link_to '', edit_event_path(event), class: "btn btn-success fa fa-pencil btn-xs", title: 'Show Client', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+            = link_to edit_event_path(event) do
+              .btn.btn-outline-secondary
+                .fa.fa-pencil
+                Edit
+          %td
+            = link_to event, method: :delete, data: { confirm: 'Are you sure?' } do 
+              .btn.btn-outline-secondary
+                .fa.fa-trash
+                Destroy
+%br

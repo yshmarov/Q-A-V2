@@ -1,12 +1,21 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :start_now]
+
+  def start_now
+		@event.update_attribute(:starts_at, Time.now)
+		redirect_to @event, notice: "Q&A started!"
+	end
 
   def index
-    @events = Event.where(user: current_user)
+    #@events = Event.where(user: current_user)
+    @q = Event.where(user: current_user).ransack(params[:q])
+    @events = @q.result(distinct: true)
   end
 
   def show
     @question = Question.new
+    @questions = @event.questions
+    #@questions = @event.questions.order(:cached_weighted_score => :desc)
   end
 
   def new
@@ -58,7 +67,7 @@ class EventsController < ApplicationController
 
   def event_params
     params[:event].permit(:title, :description, :starts_at, :ends_at, :user,
-                          :company_name, :country, :time_zone, :event_code,
+                          :company_name, :country, :time_zone, :password,
                           :user_id)
   end
 end
