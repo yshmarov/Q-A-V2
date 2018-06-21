@@ -51,7 +51,7 @@
         %th Questions
         %th Respondents
         %th Votes
-        %th Title
+        %th Name
         %th Description
         %th Password
         %th= sort_link(@q, :starts_at, "Starts")
@@ -71,7 +71,7 @@
               = pluralize(event.questions.count, 'question')
           %td
           %td
-          %td= link_to event.title, event
+          %td= link_to event.title, event, class: 'btn btn-default'
           %td
             .font-weight-light.font-italic
               = simple_format(event.description)
