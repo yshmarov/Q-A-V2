@@ -53,3 +53,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'mini_racer', platforms: :ruby
 gem "font-awesome-rails"
 gem 'ransack'
+gem 'friendly_id', '~> 5.1.0'

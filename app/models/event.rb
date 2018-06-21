@@ -2,6 +2,10 @@ class Event < ApplicationRecord
   belongs_to :user
   has_many :questions
 
+  extend FriendlyId
+  friendly_id :password, use: :slugged
+  #friendly_id :password, use: [:slugged, :finders]
+
   validates :title, :starts_at, :ends_at, :user, presence: true
   #validates :title, :password, :starts_at, :ends_at, :user, presence: true
   validates :title, length: { maximum: 25 }
