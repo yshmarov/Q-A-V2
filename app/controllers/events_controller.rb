@@ -1,9 +1,14 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy, :start_now]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :start_now, :end_now]
 
   def start_now
 		@event.update_attribute(:starts_at, Time.now)
-		redirect_to @event, notice: "Q&A started!"
+		redirect_to @event, notice: "Q&A started. Questions and votes can be added."
+	end
+
+  def end_now
+		@event.update_attribute(:ends_at, Time.now)
+		redirect_to @event, notice: "Q&A finished. No more questions and votes."
 	end
 
   def index

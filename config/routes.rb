@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     resources :events do
     	member do
     		patch :start_now
+    		patch :end_now
   		end
 		end
   end
