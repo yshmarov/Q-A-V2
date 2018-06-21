@@ -17,6 +17,7 @@ class Event < ApplicationRecord
   default_scope { order(created_at: :desc) }
 
   before_create :set_password
+  after_create :add_slug
   
   def status
     if starts_at > Time.now && ends_at > Time.now
@@ -32,6 +33,10 @@ class Event < ApplicationRecord
 
 
   private
+
+  def add_slug
+    self.update_attributes!(slug: password)
+  end
 
   def set_password
     self.password = generate_token
