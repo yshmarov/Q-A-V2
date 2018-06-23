@@ -14,10 +14,10 @@
           %p= "Starts at: #{@event.starts_at}"
           %p= "Ends at: #{@event.ends_at}"
           %p= "Time zone: #{@event.time_zone}"
-          %p= "Created by: #{@event.user.email}"
+          /%p= "Created by: #{@event.user.email}"
           .links
-            = link_to 'Edit', edit_event_path(@event), class: 'btn btn-primary'
-            = link_to 'Delete', event_path(@event), method: :delete, data: { confirm: "Are you sure?"}, class: 'btn btn-danger'
+            = link_to 'Edit time', edit_event_path(@event), class: 'btn btn-primary'
+            = link_to 'Delete Event', event_path(@event), method: :delete, data: { confirm: "Are you sure?"}, class: 'btn btn-danger'
             = link_to 'Back', events_path, class: 'btn btn-secondary'
     .card
       .card-header.bg-warning

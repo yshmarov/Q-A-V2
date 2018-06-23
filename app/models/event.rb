@@ -6,8 +6,10 @@ class Event < ApplicationRecord
   friendly_id :password, use: :slugged
   #friendly_id :password, use: [:slugged, :finders]
 
-  validates :title, :starts_at, :ends_at, :user, presence: true
+  validates :title, :user, presence: true
+  #validates :title, :starts_at, :ends_at, :user, presence: true
   #validates :title, :password, :starts_at, :ends_at, :user, presence: true
+  #validates :title, :password, :starts_at, :ends_at, :user, time_zone, presence: true
   validates :title, length: { maximum: 25 }
   validates :description, length: { maximum: 250 }
   validates :password, uniqueness: true
@@ -18,6 +20,7 @@ class Event < ApplicationRecord
 
   before_create :set_password
   after_create :add_slug
+  before_create :set_default_start_end_time_zone
   
   def status
     if starts_at > Time.now && ends_at > Time.now
@@ -31,7 +34,6 @@ class Event < ApplicationRecord
     end
   end
 
-
   private
 
   def add_slug
@@ -40,6 +42,12 @@ class Event < ApplicationRecord
 
   def set_password
     self.password = generate_token
+  end
+
+  def set_default_start_end_time_zone
+    self.starts_at = Time.zone.now + 1.hour
+    self.ends_at = Time.zone.now + 2.hours
+    self.time_zone = user.time_zone
   end
 
   def generate_token
