@@ -5,20 +5,23 @@
     .card
       %h2.card-header.bg-warning.text-center
         = "#{@event.title}"
+      .bg-warning.text-center
+        %small
+          %b= "Password: #{@event.password.upcase}"
       - if @event.description?
         %p= "Description: #{@event.description}"
       - if current_user && @event.user_id == current_user.id
         .card-body
+          Participants can ask questions and vote in this time period:
           %p
-            %b= "Password: #{@event.password.upcase}"
-          %p= "Starts at: #{@event.starts_at}"
-          %p= "Ends at: #{@event.ends_at}"
+          %p= "Starts at: #{@event.starts_at.strftime('%d-%b %Y, %H:%M')}"
+          %p= "Ends at: #{@event.ends_at.strftime('%d-%b %Y, %H:%M')}"
           %p= "Time zone: #{@event.time_zone}"
-          %p= "Created by: #{@event.user.email}"
+          /%p= "Created by: #{@event.user.email}"
           .links
-            = link_to 'Edit', edit_event_path(@event), class: 'btn btn-primary'
-            = link_to 'Delete', event_path(@event), method: :delete, data: { confirm: "Are you sure?"}, class: 'btn btn-danger'
-            = link_to 'Back', events_path, class: 'btn btn-secondary'
+            = link_to 'Edit time', edit_event_path(@event), class: 'btn btn-primary'
+            = link_to 'Delete Event', event_path(@event), method: :delete, data: { confirm: "Are you sure?"}, class: 'btn btn-danger'
+            /= link_to 'Back', events_path, class: 'btn btn-secondary'
     .card
       .card-header.bg-warning
         = form_for @question do |f|
