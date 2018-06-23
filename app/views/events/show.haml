@@ -11,6 +11,8 @@
         .card-body
           %p
             %b= "Password: #{@event.password.upcase}"
+          Participants can ask questions and vote in this time period:
+          %p
           %p= "Starts at: #{@event.starts_at}"
           %p= "Ends at: #{@event.ends_at}"
           %p= "Time zone: #{@event.time_zone}"
