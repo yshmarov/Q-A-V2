@@ -2,7 +2,7 @@
 = render 'shared/flash_messages' if flash.any?
 %p 
 .row
-  .col-lg-4
+  .col-lg-3
     .card.border-warning
       .card-body
         .text-center
@@ -11,7 +11,7 @@
           [1/1] remaining
           %p
           = link_to 'Create New', new_event_path, class: 'btn btn-warning btn-block'
-  .col-lg-4
+  .col-lg-3
     .card.border-warning
       .card-body
         .text-center
@@ -20,7 +20,7 @@
         %p
         = link_to 'Purchase', new_event_path, class: 'btn btn-outline-warning btn-block disabled'
     %p
-  .col-lg-4
+  .col-lg-3
     .card.border-warning
       .card-body
         .text-center
@@ -28,6 +28,14 @@
         Explore paid features with up to 10 participants.
         %p
         = link_to 'Start free DEMO', new_event_path, class: 'btn btn-outline-warning btn-block disabled'
+  .col-lg-3
+    .card.border-warning
+      .card-body
+        .text-center
+          %h2 How it works
+      /.embed-responsive.embed-responsive-16by9
+      /  %iframe.embed-responsive-item{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/EXjX7ur9rZ4?rel=0", :width => "560"}
+
 %p
 .text-white
   %form.form-inline.my-2.my-lg-0
