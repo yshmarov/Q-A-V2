@@ -34,6 +34,10 @@ class Event < ApplicationRecord
     end
   end
 
+  def vote_quantity
+    questions.map(&:weighted_score).sum
+  end
+
   private
 
   def add_slug
