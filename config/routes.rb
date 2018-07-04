@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  #root to: 'landing_page#index'
-  root to: 'landing_page#fea2c1200d8b'
+  root to: 'landing_page#index'
 
   # Static pages
   get 'pricing', to: 'static_pages#pricing'
