@@ -1,24 +1,38 @@
-import React from 'react';
-import ReactOnRails from 'react-on-rails';
-import { Provider } from 'react-redux';
+import React from 'react'
+import ReactOnRails from 'react-on-rails'
+import { Provider } from 'react-redux'
+import thunkMiddleware from 'redux-thunk'
+import reducers from '../bundles/Event/reducers'
+import { createStore, applyMiddleware, compose } from 'redux'
 
-import createStore from '../bundles/Event/store/eventStore';
-import EventApp from '../bundles/Event/components/EventApp';
+import Event from '../bundles/Event/components/Event'
 
-// See documentation for https://github.com/reactjs/react-redux.
-// This is how you get props from the Rails view into the redux store.
-// This code here binds your smart component to the redux store.
-// railsContext provides contextual information especially useful for server rendering, such as
-// knowing the locale. See the React on Rails documentation for more info on the railsContext
-const EventApp = (props, _railsContext) => {
-  const store = createStore(props);
+const EventApp = (props) => {
+
+  console.log(props, 'HIGH LEVEL PROPS')
+
+  const isDevEnv = false
+
+  const store = () => {
+    if (isDevEnv) {
+      return createStore(
+        reducers,
+        compose(
+          applyMiddleware(thunkMiddleware, logger),
+          DevTools.instrument()
+        )
+      )
+    } else {
+      return createStore(reducers, compose(applyMiddleware(thunkMiddleware)))
+    }
+  }
+
   const reactComponent = (
-    <Provider store={store}>
-      <EventApp />
+    <Provider store={store()}>
+      <Event />
     </Provider>
-  );
-  return reactComponent;
-};
+  )
+  return reactComponent
+}
 
-// This is how react_on_rails can see the HelloWorldApp in the browser.
-ReactOnRails.register({ EventApp });
+ReactOnRails.register({ EventApp })
