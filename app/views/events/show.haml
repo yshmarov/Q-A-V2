@@ -1,11 +1,13 @@
 - content_for :title do
   = @event.title
 = render 'shared/flash_messages' if flash.any?
-- if current_user && @event.user_id == current_user.id
-  = render 'event_admin'
 .row
   .col-lg-2
   .col-lg-8
+    - if current_user && @event.user_id == current_user.id
+      .text-right
+        %br
+        = link_to 'Event settings', settings_event_path, class: 'btn btn-warning'
     .event-container
       .card.border-warning
         %h2.card-header.bg-warning.text-center
