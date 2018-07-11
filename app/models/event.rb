@@ -24,7 +24,7 @@ class Event < ApplicationRecord
     if starts_at > Time.now && ends_at > Time.now
       "not started"
     elsif starts_at < Time.now && ends_at > Time.now
-      "active"
+      "live"
     elsif starts_at < Time.now && ends_at < Time.now
       "finished"
     else
@@ -35,7 +35,7 @@ class Event < ApplicationRecord
   def status_2
     if status == 'not started'
       "starts in #{distance_of_time_in_words(Time.now, starts_at)}"
-    elsif status == 'active'
+    elsif status == 'live'
       "ends in #{distance_of_time_in_words(Time.now, ends_at)}"
     elsif status == 'finished'
       'finished'

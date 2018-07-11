@@ -4,20 +4,20 @@
 .row
   .col-lg-2
   .col-lg-8
-    - if current_user && @event.user_id == current_user.id
-      .text-right
-        %br
-        = link_to 'Event settings', settings_event_path, class: 'btn btn-warning'
     .event-container
       .card.border-warning
-        %h2.card-header.bg-warning.text-center
+        %h2.card-header.bg-warning
           = "#{@event.title}"
+          - if current_user && @event.user_id == current_user.id
+            .pull-right
+              = link_to settings_event_path, class: 'btn btn-warning' do
+                .fa.fa-cog{:style => "font-size:25px"}
         - if @event.description?
-          .bg-warning.text-center
+          .card-header.bg-warning
             %small
-              %p= "#{@event.description}"
+              = "#{@event.description}"
         .card-header.bg-warning
-          - if @event.status == 'active'
+          - if @event.status == 'live'
             = form_for @question do |f|
               = f.hidden_field(:event_id, value: @event.id)
               = f.hidden_field(:user_id, value: current_user&.id)
@@ -27,10 +27,16 @@
                 = f.submit 'Ask', class: 'btn btn-info add-question-submit'
           - elsif @event.status == 'not started'
             .text-center
-              Q&A #{@event.status_2}
+              Q&A session 
+              = status_label(@event.status)
+              \.
+              #{@event.status_2}
           - else
             .text-center
-              Q&A finished. Thank you for participating!
+              Q&A session 
+              = status_label(@event.status)
+              \.
+              Thank you for participating!
       - if @event.questions.any?
         %p
         - @questions.each do |question|
@@ -54,6 +60,8 @@
                   %span= pluralize(question.weighted_score, 'vote')
                 .col-lg
                   = question.contents
+                  /= simple_format(question.contents)
+
 /.card-body.questions-container
 /  - if @event.questions.any?
 /    %h1 Questions:

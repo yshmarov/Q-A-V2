@@ -1,8 +1,11 @@
-%p
-.text-right
-  %br
-  = link_to 'Show event', event_path, class: 'btn btn-warning'
-%p
+%br
+.card.border-warning
+  %h2.card-header.bg-warning
+    .pull-left
+      = "#{@event.title}"
+    .pull-right
+      Password: #{@event.password}
+%br
 .row
 .card-group
   .row
@@ -30,7 +33,7 @@
                 starts in
                 = distance_of_time_in_words Time.now, @event.starts_at
                 = button_to "Start now", start_now_event_path(@event), method: :patch
-              - if @event.status == 'active'
+              - if @event.status == 'live'
                 = button_to "End now", end_now_event_path(@event), method: :patch
     .col
       .card.border-warning
@@ -40,7 +43,7 @@
           %small
             = link_to '1. Show attendees how to join', event_path, class: 'btn btn-outline-success btn-block'
             %p 
-              Tell attendees to submit their questions now by going to www.askdemos.com with the passcode 
+              Tell attendees to submit their questions now by going to www.askdemos.com with the password
               %b #{@event.password}.
             = link_to '2. Show question board on screen', event_path, class: 'btn btn-outline-success btn-block'
             %p New questions automatically appear on the Projector Panel.
