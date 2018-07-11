@@ -3,7 +3,7 @@ class Event < ApplicationRecord
 
   belongs_to :user
   has_many :questions
-
+  scope :finito, -> { where("ends_at < ?", Time.zone.now) }
   extend FriendlyId
   friendly_id :password, use: :slugged
 
