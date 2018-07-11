@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   authenticate :user do
     resources :events do
     	member do
+        get :settings
     		patch :start_now
     		patch :end_now
   		end

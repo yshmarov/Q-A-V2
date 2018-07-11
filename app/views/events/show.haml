@@ -1,11 +1,13 @@
 - content_for :title do
   = @event.title
 = render 'shared/flash_messages' if flash.any?
-- if current_user && @event.user_id == current_user.id
-  = render 'event_admin'
 .row
   .col-lg-2
   .col-lg-8
+    - if current_user && @event.user_id == current_user.id
+      .text-right
+        %br
+        = link_to 'Event settings', settings_event_path, class: 'btn btn-warning'
     .event-container
       .card.border-warning
         %h2.card-header.bg-warning.text-center
@@ -15,13 +17,20 @@
             %small
               %p= "#{@event.description}"
         .card-header.bg-warning
-          = form_for @question do |f|
-            = f.hidden_field(:event_id, value: @event.id)
-            = f.hidden_field(:user_id, value: current_user&.id)
-            .form-group
-              /= f.text_area :contents, autofocus: true, class: 'form-control', placeholder: "Enter your question here"
-              = f.text_area :contents, autofocus: true, class: 'form-control', placeholder: "Do you have a new question?"
-              = f.submit 'Ask', class: 'btn btn-info add-question-submit'
+          - if @event.status == 'active'
+            = form_for @question do |f|
+              = f.hidden_field(:event_id, value: @event.id)
+              = f.hidden_field(:user_id, value: current_user&.id)
+              .form-group
+                /= f.text_area :contents, autofocus: true, class: 'form-control', placeholder: "Enter your question here"
+                = f.text_area :contents, autofocus: true, class: 'form-control', placeholder: "Do you have a new question?"
+                = f.submit 'Ask', class: 'btn btn-info add-question-submit'
+          - elsif @event.status == 'not started'
+            .text-center
+              Q&A #{@event.status_2}
+          - else
+            .text-center
+              Q&A finished. Thank you for participating!
       - if @event.questions.any?
         %p
         - @questions.each do |question|
@@ -29,15 +38,19 @@
             .card-body
               .row
                 .col-lg-auto
-                  - unless current_user.voted_for? question
-                    = link_to upvote_question_path(question), method: :put do
+                  - unless @event.status == 'finished'
+                    - unless current_user.voted_for? question
+                      = link_to upvote_question_path(question), method: :put do
+                        .col-md-12
+                          /.btn.btn-outline-success
+                          /  %i.fa.fa-thumbs-up{:style => "font-size:30px;color:orange;"}
+                          %i.fa.custom-fa.fa-thumbs-up{:style => "font-size:25px;color:transparent"}
+                    - else
                       .col-md-12
-                        /.btn.btn-outline-success
-                        /  %i.fa.fa-thumbs-up{:style => "font-size:30px;color:orange;"}
-                        %i.fa.fa-thumbs-up{:style => "font-size:25px;color:grey"}
+                        %i.fa.fa-thumbs-up{:style => "font-size:25px;color:orange"}
                   - else
                     .col-md-12
-                      %i.fa.fa-thumbs-up{:style => "font-size:25px;color:orange"}
+                      %i.fa.fa-thumbs-up{:style => "font-size:25px;color:grey"}
                   %span= pluralize(question.weighted_score, 'vote')
                 .col-lg
                   = question.contents

@@ -1,4 +1,8 @@
 %p
+.text-right
+  %br
+  = link_to 'Show event', event_path, class: 'btn btn-warning'
+%p
 .row
 .card-group
   .row
@@ -34,19 +38,23 @@
           %b Engage attendees
         .card-body
           %small
-            = link_to '1. Show question board on screen', event_path, class: 'btn btn-outline-success btn-block'
+            = link_to '1. Show attendees how to join', event_path, class: 'btn btn-outline-success btn-block'
+            %p 
+              Tell attendees to submit their questions now by going to www.askdemos.com with the passcode 
+              %b #{@event.password}.
+            = link_to '2. Show question board on screen', event_path, class: 'btn btn-outline-success btn-block'
             %p New questions automatically appear on the Projector Panel.
-            = link_to '2. Show attendees how to join', event_path, class: 'btn btn-outline-success btn-block'
-            %p Tell attendees to submit their questions now by going to www.askdemos.com with the passcode #{@event.password}.
     .col
       .card.border-warning
         .card-header.bg-warning.text-center
-          %b Upgrade
+          %b Customize
         .card-body
           %small
             = link_to 'Logo branding', event_path, class: 'btn btn-outline-success btn-block'
             %p Give your brand more visibility by adding your company or event logo on the Projector Panel.
             = link_to 'Custom branding', event_path, class: 'btn btn-outline-success btn-block'
+            %p Ensure that the look and feel of AskDemos meets your company or event's branding.
+            = link_to 'Add speaker/event details', event_path, class: 'btn btn-outline-success btn-block'
             %p Ensure that the look and feel of AskDemos meets your company or event's branding.
     .col
       .card.border-warning
