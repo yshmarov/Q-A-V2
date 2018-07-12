@@ -16,8 +16,8 @@ class Event < ApplicationRecord
 
   default_scope { order(created_at: :desc) }
 
-  before_validation :set_password
-  before_validation :set_default_start_end_time_zone
+  before_validation :set_password, on: :create
+  before_validation :set_default_start_end_time_zone, on: :create
   after_create :add_slug
   
   def status
