@@ -38,7 +38,7 @@ class Event < ApplicationRecord
     elsif status == 'live'
       "ends in #{distance_of_time_in_words(Time.now, ends_at)}"
     elsif status == 'finished'
-      'finished'
+      nil
     else
       'ERROR'
     end

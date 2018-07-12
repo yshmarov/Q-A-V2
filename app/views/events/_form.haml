@@ -18,11 +18,11 @@
       = f.label 'Starts at:', class: 'col-md-3 col-form-label'
       .col-md-9
         /= f.datetime_select :starts_at, minute_step: 15, :default => Time.zone.now + 1.hour
-        = f.datetime_select :starts_at, :default => Time.zone.now + 1.hour
+        = f.datetime_select :starts_at, :default => Time.zone.now + 5.minutes
     .form-group.row
       = f.label 'Ends at:', class: 'col-md-3 col-form-label'
       .col-md-9
-        = f.datetime_select :ends_at, :default => Time.zone.now + 2.hours
+        = f.datetime_select :ends_at, :default => Time.zone.now + 65.minutes
         /= f.date_field :ends_at, value: @event.ends_at || (Time.now + 10.days).strftime('%Y-%m-%d'), class: "form-control"
     .form-group.row
       = f.label 'Time zone:', class: 'col-md-3 col-form-label'

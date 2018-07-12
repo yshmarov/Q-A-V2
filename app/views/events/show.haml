@@ -10,6 +10,7 @@
           = "#{@event.title}"
           - if current_user && @event.user_id == current_user.id
             .pull-right
+              = status_label(@event.status)
               = link_to settings_event_path, class: 'btn btn-warning' do
                 .fa.fa-cog{:style => "font-size:25px"}
         - if @event.description?
