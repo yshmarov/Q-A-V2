@@ -1,5 +1,6 @@
 - content_for :title do
   = @event.title
+= render 'shared/flash_messages' if flash.any?
 .row
   .col-lg-2
   .col-lg-8
