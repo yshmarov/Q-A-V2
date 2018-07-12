@@ -33,6 +33,7 @@
     .col-md-9
       /= link_to 'Cancel', events_path, class: 'btn btn-secondary'
       = f.submit 'Create Event', class: 'btn btn-warning'
+      /= f.button :submit, class: 'btn btn-warning'
   .links
     - unless f.object.new_record?
       = link_to 'Back', event_path(@event), class: 'btn btn-secondary'

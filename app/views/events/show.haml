@@ -1,6 +1,5 @@
 - content_for :title do
   = @event.title
-= render 'shared/flash_messages' if flash.any?
 .row
   .col-lg-2
   .col-lg-8
@@ -61,7 +60,7 @@
                 .col-lg
                   = question.contents
                   /= simple_format(question.contents)
-
+%br
 /.card-body.questions-container
 /  - if @event.questions.any?
 /    %h1 Questions:
