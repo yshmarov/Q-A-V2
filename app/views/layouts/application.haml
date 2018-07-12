@@ -14,5 +14,7 @@
   %body.bg-light
     = render 'layouts/navbar'
     .container-fluid
+      /= current_user.time_zone
+      /= Time.zone.now
       = yield
     = render 'layouts/footer'
