@@ -1,41 +1,14 @@
 %br
 = render 'shared/flash_messages' if flash.any?
 %p 
-.row
-  .col-lg-3
-    .card.border-warning
-      .card-body
-        .text-center
-          %h2
-            = pluralize(current_user.events.count, 'Event')
-          [1/1] remaining
-          %p
-          = link_to 'Create New', new_event_path, class: 'btn btn-warning btn-block'
-  .col-lg-3
-    .card.border-warning
-      .card-body
-        .text-center
-          %h2 Upgrade
-        Select a plan and add-ons.
-        %p
-        = link_to 'Purchase', new_event_path, class: 'btn btn-outline-warning btn-block disabled'
-    %p
-  .col-lg-3
-    .card.border-warning
-      .card-body
-        .text-center
-          %h2 Try PRO
-        Explore paid features with up to 10 participants.
-        %p
-        = link_to 'Start free DEMO', new_event_path, class: 'btn btn-outline-warning btn-block disabled'
-  .col-lg-3
-    .card.border-warning
-      .card-body
-        .text-center
-          %h2 How it works
-      /.embed-responsive.embed-responsive-16by9
-      /  %iframe.embed-responsive-item{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/EXjX7ur9rZ4?rel=0", :width => "560"}
-
+.form-inline
+  .badge.badge-secondary
+    %h5
+      = pluralize(current_user.events.count, 'Event')
+  .mr-sm-2
+  = link_to 'Create Event', new_event_path, class: 'btn btn-primary'
+  .mr-sm-2
+  = link_to 'Upgrade plan', events_path, class: 'btn btn-danger disabled'
 %p
 .text-white
   %form.form-inline.my-2.my-lg-0
@@ -52,7 +25,7 @@
     %tr
       %th
       %th Name
-      /%th Description
+      %th Description
       %th Password
       %th= sort_link(@q, :starts_at, "Starts")
       %th= sort_link(@q, :ends_at, "Ends")
@@ -65,22 +38,20 @@
     - @events.each do |event|
       %tr
         %td
-          .badge.badge-warning
+          .badge.badge-secondary.btn-block
             .fa.fa-users
             participants
           %br
-          .badge.badge-warning
+          .badge.badge-secondary.btn-block
             .fa.fa-question
             /= fa_icon "impressions"
             = pluralize(event.questions.count, 'question')
           %br
-          .badge.badge-warning
+          .badge.badge-secondary.btn-block
             .fa.fa-thumbs-up
             = pluralize(event.vote_quantity, 'vote')
-        %td= link_to event.title, event, class: 'btn btn-outline-info'
-        /%td
-        /  .font-weight-light.font-italic
-        /    = simple_format(event.description)
+        %td= link_to event.title, event, class: 'btn btn-outline-primary btn-block'
+        %td= simple_format(event.description)
         %td
           %b= event.password.upcase
         %td= event.starts_at.strftime('%e-%b %Y, %H:%M (%z)')
@@ -99,10 +70,10 @@
         %td
           /= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }
           /= link_to '', edit_event_path(event), class: "btn btn-success fa fa-pencil btn-xs", title: 'Show Client', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
-          = link_to edit_event_path(event) do
+          = link_to settings_event_path(event) do
             .btn.btn-outline-secondary
-              .fa.fa-pencil
-              Edit
+              .fa.fa-cog
+              Settings
         %td
           = link_to event, method: :delete, data: { confirm: 'Are you sure?' } do 
             .btn.btn-outline-secondary
