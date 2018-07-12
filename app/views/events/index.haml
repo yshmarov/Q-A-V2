@@ -1,12 +1,13 @@
 %br
 = render 'shared/flash_messages' if flash.any?
 %p 
+%h1 My Events
 .form-inline
   .badge.badge-secondary
     %h5
       = pluralize(current_user.events.count, 'Event')
   .mr-sm-2
-  = link_to 'Create Event', new_event_path, class: 'btn btn-primary'
+  = link_to 'Create Q&A event', new_event_path, class: 'btn btn-primary'
   .mr-sm-2
   = link_to 'Upgrade plan', events_path, class: 'btn btn-danger disabled'
 %p
