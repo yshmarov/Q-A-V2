@@ -16,15 +16,15 @@ class Event < ApplicationRecord
 
   default_scope { order(created_at: :desc) }
 
-  before_validation :set_password
-  before_validation :set_default_start_end_time_zone
+  before_validation :set_password, on: :create
+  before_validation :set_default_start_end_time_zone, on: :create
   after_create :add_slug
   
   def status
     if starts_at > Time.now && ends_at > Time.now
       "not started"
     elsif starts_at < Time.now && ends_at > Time.now
-      "active"
+      "live"
     elsif starts_at < Time.now && ends_at < Time.now
       "finished"
     else
@@ -35,7 +35,7 @@ class Event < ApplicationRecord
   def status_2
     if status == 'not started'
       "starts in #{distance_of_time_in_words(Time.now, starts_at)}"
-    elsif status == 'active'
+    elsif status == 'live'
       "ends in #{distance_of_time_in_words(Time.now, ends_at)}"
     elsif status == 'finished'
       'finished'
