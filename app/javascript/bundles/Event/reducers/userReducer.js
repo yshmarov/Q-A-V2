@@ -1,7 +1,7 @@
 import * as actionTypes from '../constants'
 
-const initialState = {
-  email: 'email'
+export const initialState = {
+  email: ''
 }
 
 export default function (state = initialState, action) {
