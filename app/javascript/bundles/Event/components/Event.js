@@ -1,19 +1,22 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-const Event = (props) => {
-  console.log(props, 'Event PROPS')
+class Event extends Component {
 
-  return (
-    <div >
-      Sample text
-    </div>
-  )
+  render() {
+    console.log(this.props, 'COMPONENTN PROPS')
+
+    return (
+      <div >
+        Sample text
+      </div>
+    )
+  }
 }
 
 Event.propTypes = {
-  // name: PropTypes.string.isRequired
+  // state: PropTypes.string.isRequired
 }
 
 const mapStateToProps = state => ({
