@@ -8,28 +8,28 @@ import logger from 'redux-logger'
 
 import Event from '../bundles/Event/components/Event'
 
+const DevTools = require('./devTools').default
+const isDevEnv = process.env.NODE_ENV === 'development'
+
 const EventApp = (props, _railsContext) => {
-  // const DevTools = require('./components/devTools').default
-  const isDevEnv = true || process.env.NODE_ENV === 'development'
+  const { user } = props
 
   const { userState, eventState } = initialStates
   const initialState = {
-    userStore: { ...userState, email: props.user.email},
+    userStore: { ...userState, email: user.email},
     eventStore: eventState
   }
-
-  console.log(initialState, "IN STATE")
 
   const store = () => {
     if (isDevEnv) {
       const composedStore = compose(
-        applyMiddleware(thunkMiddleware, logger)
-        // DevTools.instrument()
+        applyMiddleware(thunkMiddleware, logger),
+        DevTools.instrument()
       )
-      const storeCreator = composedStore(createStore)(reducer, initialState)
-      return storeCreator
+      return createStore(reducer, initialState, composedStore)
     } else {
-      return createStore(reducers(props), compose(applyMiddleware(thunkMiddleware)))
+      const composedStore = compose(applyMiddleware(thunkMiddleware))
+      return createStore(reducer, initialState, composedStore)
     }
   }
 
