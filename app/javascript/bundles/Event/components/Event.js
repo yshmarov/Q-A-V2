@@ -20,7 +20,7 @@ Event.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  state: state
+  userState: state
 })
 
 export default connect(mapStateToProps)(Event)

@@ -6,7 +6,7 @@ import reducer, { initialStates } from '../reducers'
 import { createStore, applyMiddleware, compose } from 'redux'
 import logger from 'redux-logger'
 
-const DevTools = require('../../../packs/devTools').default
+const DevTools = require('packs/devTools').default
 const isDevEnv = process.env.NODE_ENV === 'development'
 
 export default props => {

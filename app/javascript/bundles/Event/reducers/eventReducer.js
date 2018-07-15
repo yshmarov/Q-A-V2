@@ -1,4 +1,4 @@
-import * as actionTypes from '../constants'
+import * as actionTypes from 'constants'
 
 export const initialState = {
   name: 'Event Name'
