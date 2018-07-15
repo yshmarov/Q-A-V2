@@ -1,3 +1,6 @@
-%h1 Main Component
-= redux_store('eventStore', props: @frontend_events_props)
-= react_component('EventApp', props: @frontend_events_props, prerender: false)
+%h1 Event Page
+- if @frontend_events_props[:event].present?
+  = redux_store('eventStore', props: @frontend_events_props)
+  = react_component('EventApp', props: @frontend_events_props, prerender: false)
+- else
+  %h3 No such event. Please double check Your event code.

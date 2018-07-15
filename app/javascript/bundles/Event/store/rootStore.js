@@ -18,8 +18,6 @@ export default props => {
     eventStore: eventState
   }
 
-  console.log(initialState, 'INIT STATE')
-
   const store = () => {
     if (isDevEnv) {
       const composedStore = compose(

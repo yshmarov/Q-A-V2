@@ -1,7 +1,11 @@
 import actionTypes from 'constants'
 
 export const initialState = {
-  name: 'Event Name'
+  id: null,
+  title: null,
+  description: null,
+  starts_at: null,
+  ends_at: null
 }
 
 export default function (state = initialState, action) {

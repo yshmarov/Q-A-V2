@@ -3,24 +3,39 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 class Event extends Component {
+  _eventContent() {
+    return (
+      <div className='event-content'>
+        <div className='event-title'>
+          {eventState.title}
+        </div>
+        <div className='event-questions-container'>
+          {/* {eventState.questions.map} */}
+        </div>
+      </div>
+    )
+  }
 
   render() {
-    console.log(this.props, 'COMPONENTN PROPS')
+    const { userState, eventState } = this.props
+    const eventContainer = this._eventContent()
 
     return (
-      <div >
-        Sample text
+      <div className='event-container'>
+        { eventContainer }
       </div>
     )
   }
 }
 
 Event.propTypes = {
-  // state: PropTypes.string.isRequired
+  // eventState: PropTypes.string.isRequired,
+  // userState: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
-  userState: state
+  userState: state.userState,
+  eventState: state.eventState
 })
 
 export default connect(mapStateToProps)(Event)
