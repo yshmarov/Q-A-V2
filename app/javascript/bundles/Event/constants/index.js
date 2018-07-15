@@ -4,4 +4,4 @@ const actionTypes = mirrorCreator([
 
 ])
 
-export default actionTypes;
+export default actionTypes
