@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   get 'jobs', to: 'static_pages#jobs'
   get 'event_types', to: 'static_pages#event_types'
 
-  #resources :events, only: :show
+  # frontend app
+  get 'frontend_events', to: 'frontend_events#index'
+
   resources :questions, only: [:create, :edit, :update, :destroy] do
     member do
       put 'upvote', to: 'questions#upvote'
@@ -31,5 +33,4 @@ Rails.application.routes.draw do
   		end
 		end
   end
-
 end
