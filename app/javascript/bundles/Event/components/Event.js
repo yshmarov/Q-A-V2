@@ -29,13 +29,13 @@ class Event extends Component {
 }
 
 Event.propTypes = {
-  // eventState: PropTypes.string.isRequired,
-  // userState: PropTypes.object.isRequired
+  eventState: PropTypes.object.isRequired,
+  userState: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
-  userState: state.userState,
-  eventState: state.eventState
+  eventState: state.eventStore,
+  userState: state.userStore
 })
 
 export default connect(mapStateToProps)(Event)
