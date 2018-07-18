@@ -10,12 +10,20 @@ const DevTools = require('packs/devTools').default
 const isDevEnv = process.env.NODE_ENV === 'development'
 
 export default props => {
-  const { user } = props
+  const { user, event } = props
 
   const { userState, eventState } = initialStates
   const initialState = {
-    userStore: { ...userState, email: user.email},
-    eventStore: eventState
+    userStore: {...userState,
+      email: user.email
+    },
+    eventStore: {...eventState,
+      id: event.id,
+      title: event.title,
+      description: event.description,
+      starts_at: event.starts_at,
+      ends_at: event.ends_at
+    }
   }
 
   const store = () => {

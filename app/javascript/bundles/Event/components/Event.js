@@ -7,7 +7,7 @@ class Event extends Component {
     return (
       <div className='event-content'>
         <div className='event-title'>
-          {eventState.title}
+          {/* {eventState.title} */}
         </div>
         <div className='event-questions-container'>
           {/* {eventState.questions.map} */}
@@ -19,6 +19,9 @@ class Event extends Component {
   render() {
     const { userState, eventState } = this.props
     const eventContainer = this._eventContent()
+
+    console.log(eventState, 'EVENT STATE')
+    console.log(userState, 'USER STATE')
 
     return (
       <div className='event-container'>
