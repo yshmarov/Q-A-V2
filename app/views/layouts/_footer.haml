@@ -1,6 +1,14 @@
 %footer.page-footer.font-small.stylish-color-dark.pt-4.mt-4
 .bg-dark.text-white
   -  unless current_user
+    %hr.bg-light
+    / Call to action
+    %ul.list-unstyled.list-inline.text-center.py-2
+      %li.list-inline-item
+        %h5.mb-1 Ready to get started?
+      = link_to 'Get started for free', new_user_registration_path, class: 'btn btn-lg btn-warning'
+
+    / Call to action
     %hr/
     / Footer Links
     .container.text-center.text-md-left
@@ -72,14 +80,6 @@
         / Grid column
       / Grid row
     / Footer Links
-    %hr.bg-light
-    / Call to action
-    %ul.list-unstyled.list-inline.text-center.py-2
-      %li.list-inline-item
-        %h5.mb-1 Ready to get started?
-      = link_to 'Get started for free', new_user_registration_path, class: 'btn btn-lg btn-warning'
-
-    / Call to action
   - else
     .text-center
       = link_to 'Privacy policy', privacy_policy_path
