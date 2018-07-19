@@ -45,7 +45,7 @@
           %ul.list-unstyled
             = link_to 'Features', features_path
             %br
-            = link_to 'Event types', event_types_path
+            = link_to 'How?', how_path
             %br
             = link_to 'Pricing', pricing_path
         / Grid column
@@ -77,7 +77,8 @@
     %ul.list-unstyled.list-inline.text-center.py-2
       %li.list-inline-item
         %h5.mb-1 Ready to get started?
-      = link_to 'Try now for free!', new_user_registration_path, class: 'btn btn-lg btn-warning'
+      = link_to 'Get started for free', new_user_registration_path, class: 'btn btn-lg btn-warning'
+
     / Call to action
   - else
     .text-center

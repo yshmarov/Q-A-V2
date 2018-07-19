@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get 'customer_agreement', to: 'static_pages#customer_agreement'
   get 'security', to: 'static_pages#security'
   get 'jobs', to: 'static_pages#jobs'
-  get 'event_types', to: 'static_pages#event_types'
+  get 'how', to: 'static_pages#how'
 
   #resources :events, only: :show
   resources :questions, only: [:create, :edit, :update, :destroy] do

@@ -5,7 +5,7 @@
 %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.sticky-top
   %a.navbar-brand{:href => "/"}
     = image_tag "askdemos-logo-1-black.png", size: "25x25", class: "mx-auto d-inline align-top", :alt => "avatar"
-    Askdemos Q&A
+    Askdemos
   %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
     %span
       /YA
@@ -14,9 +14,9 @@
     - unless current_user
       %ul.navbar-nav.mr-auto
         %li.nav-item
-          = link_to 'Features', features_path, class: 'nav-link text-white'
+          = link_to 'How', how_path, class: 'nav-link text-white'
         %li.nav-item
-          = link_to 'Event types', event_types_path, class: 'nav-link text-white'
+          = link_to 'Features', features_path, class: 'nav-link text-white'
         %li.nav-item
           = link_to 'Pricing', pricing_path, class: 'nav-link text-white'
     %ul.navbar-nav.ml-auto

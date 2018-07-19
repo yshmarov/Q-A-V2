@@ -8,8 +8,8 @@ class Event < ApplicationRecord
   friendly_id :password, use: :slugged
 
   validates :title, :password, :starts_at, :ends_at, :user, :time_zone, presence: true
-  validates :title, length: { maximum: 25 }
-  validates :description, length: { maximum: 250 }
+  validates :title, length: { maximum: 30 }
+  validates :description, length: { maximum: 2000 }
   validates :password, uniqueness: true
   validate :starts_at_cannot_be_in_the_past
   validate :ends_at_can_not_be_before_starts_at
