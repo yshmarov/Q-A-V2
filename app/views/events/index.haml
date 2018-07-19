@@ -1,7 +1,5 @@
-%br
 = render 'shared/flash_messages' if flash.any?
-%p 
-%h1 My Events
+%h1.display-4 My Events
 .form-inline
   .badge.badge-secondary
     %h5
@@ -25,7 +23,7 @@
               .mr-sm-2
                 = f.text_field :title_cont, class: 'form-control', placeholder: 'Find Event', autofocus: true
         /%th Description
-        %th Password
+        /%th Password
         %th= sort_link(@q, :starts_at, "Starts")
         %th= sort_link(@q, :ends_at, "Ends")
         %th Status
@@ -51,21 +49,24 @@
           /    = pluralize(event.vote_quantity, 'vote')
           %td= link_to event.title, event, class: 'btn btn-outline-primary btn-block'
           /%td= simple_format(event.description)
-          %td
-            %b= event.password.upcase
-          %td= event.starts_at.strftime('%e %b %Y, %H:%M (%z)')
+          /%td
+          /  %b= event.password.upcase
+          /%td= event.starts_at.strftime('%e %b %Y, %H:%M (%z)')
+          %td= event.starts_at.strftime('%e %b %Y, %H:%M')
           %td= event.ends_at.strftime('%e %b %Y, %H:%M')
           %td
             = status_label(event.status)
-            - if event.starts_at > Time.now
-              %br
-              = event.status_2
-              = button_to "Start now", start_now_event_path(event), method: :patch
-            - if event.status == 'active'
-              = button_to "End now", end_now_event_path(event), method: :patch
+            %p= event.status_2
+            /- if event.starts_at > Time.now
+            /  %br
+            /  = event.status_2
+            /  = button_to "Start now", start_now_event_path(event), method: :patch
+            /- if event.status == 'live'
+            /  = button_to "End now", end_now_event_path(event), method: :patch
           %td= distance_of_time_in_words event.ends_at, event.starts_at
           %td
-            = "#{time_ago_in_words(event.created_at)} ago by #{event.user.username}"
+            = "#{time_ago_in_words(event.created_at)} ago"
+            /by #{event.user.username}"
           %td= "#{time_ago_in_words(event.updated_at)} ago"
           %td
             /= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }
