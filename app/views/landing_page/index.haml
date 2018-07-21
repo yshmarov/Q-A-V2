@@ -36,7 +36,7 @@
         /, vote on polls, and give their feedback
         /%small
         /  Askdemos lets participants ask & vote for questions on events
-        %p
+        %br
         /= link_to 'Try now! Create a free Q&A event', new_user_registration_path, class: 'btn btn-lg btn-warning'
         = link_to 'Get started for free', new_user_registration_path, class: 'btn btn-lg btn-warning'
         %p
@@ -52,7 +52,7 @@
   /%br
   /%hr
   /%br
-  %h2.display-5
+  .display-4
     /Live Q&A with question voting
     Realtime voting to engage your audience
   /.text-muted
@@ -107,7 +107,52 @@
   %br
   %hr
   %br
-  %h2.display-5 Great for different events
+  .display-4 Why?
+  %br
+  .card
+    .card-body
+      .row
+        .col-lg-auto
+          .col-md-12
+            %i.fa.fa-thumbs-up{:style => "font-size:40px;color:orange"}
+        .col-lg
+          .text-left
+            %h4 Engage
+            Create a conversation with your audience. Receive feedback on your event.
+  .card
+    .card-body
+      .row
+        .col-lg-auto
+          .col-md-12
+            %i.fa.fa-thumbs-up{:style => "font-size:40px;color:orange"}
+        .col-lg
+          .text-left
+            %h4 Prioritize
+            Because time is limited, speakers can now focus on popular questions.
+  .card
+    .card-body
+      .row
+        .col-lg-auto
+          .col-md-12
+            %i.fa.fa-thumbs-up{:style => "font-size:40px;color:orange"}
+        .col-lg
+          .text-left
+            %h4 Bottom of the iceberg
+            Learn questons that would not be asked otherwise.
+  .card
+    .card-body
+      .row
+        .col-lg-auto
+          .col-md-12
+            %i.fa.fa-thumbs-up{:style => "font-size:40px;color:orange"}
+        .col-lg
+          .text-left
+            %h4 Follow-up
+            Get contact details of interested audience members. Answer unanswered questions later on. 
+  %br
+  %hr
+  %br
+  .display-4 Great for different events
   %br
   .card-group
     .card
@@ -147,7 +192,7 @@
   %br
   %hr
   %br
-  %h2.display-5 Core Features
+  .display-4 Core Features
   %br
   .card-group
     .card
@@ -183,28 +228,28 @@
           %small.text-muted You own your data. Export to PDF and Excel.
   %br
   = link_to 'See more features', features_path, class: 'btn btn-warning'
-  /%br
-  /%hr
-  /%br
-  /.row
-  /  .col-4
-  /    %h2.display-5 Don't just take our word for it
-  /  .col-8
-  /    .row.text-center
-  /      .col
-  /        = image_tag "pg-askdemos-partner.png", style: 'height:auto;width:75%;', :alt => "pg-askdemos-partner"
-  /      .col
-  /        = image_tag "startup-weekend-askdemos-partner-logo.png", style: 'height:auto;width:75%;', :alt => "startup-weekend-askdemos-partner"
-  /      .col
-  /        = image_tag "visuality-askdemos-partner-logo.png", style: 'height:auto;width:75%;', :alt => "visuality-askdemos-partner"
-  /    %br
-  /    .row.text-center
-  /      .col
-  /        = image_tag "ewl-askdemos-partner.png", style: 'height:auto;width:75%;', :alt => "ewl-askdemos-partner"
-  /      .col
-  /        = image_tag "vistula-askdemos-partner-logo.png", style: 'height:auto;width:35%;', :alt => "vistula-askdemos-partner"
-  /      .col
-  /        = image_tag "spark-solutions-askdemos-partner-logo.png", style: 'height:auto;width:75%;', :alt => "spark-solutions-askdemos-partner"
+  %br
+  %hr
+  %br
+  .row
+    .col-4
+      .display-4 Don't just take our word for it
+    .col-8
+      .row.text-center
+        .col
+          = image_tag "pg-askdemos-partner.png", style: 'height:auto;width:75%;', :alt => "pg-askdemos-partner"
+        .col
+          = image_tag "startup-weekend-askdemos-partner-logo.png", style: 'height:auto;width:75%;', :alt => "startup-weekend-askdemos-partner"
+        .col
+          = image_tag "visuality-askdemos-partner-logo.png", style: 'height:auto;width:75%;', :alt => "visuality-askdemos-partner"
+      %br
+      .row.text-center
+        .col
+          = image_tag "ewl-askdemos-partner.png", style: 'height:auto;width:75%;', :alt => "ewl-askdemos-partner"
+        .col
+          = image_tag "vistula-askdemos-partner-logo.png", style: 'height:auto;width:35%;', :alt => "vistula-askdemos-partner"
+        .col
+          = image_tag "spark-solutions-askdemos-partner-logo.png", style: 'height:auto;width:75%;', :alt => "spark-solutions-askdemos-partner"
   /    /%p FLC London
   /    /%p Ferrer hotels
   /    /%p Anne Arundel Community College
