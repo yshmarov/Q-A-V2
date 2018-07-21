@@ -1,7 +1,8 @@
 import actionTypes from 'constants/index'
 
 export const initialState = {
-  email: ''
+  id: null,
+  email: null
 }
 
 export default function (state = initialState, action) {

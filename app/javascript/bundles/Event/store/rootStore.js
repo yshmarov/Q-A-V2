@@ -12,11 +12,13 @@ const isDevEnv = process.env.NODE_ENV === 'development'
 export default props => {
   const user_attr = props.user.data.attributes
   const event_attr = props.event.data.attributes
+  const event_questions = props.event.included
 
   console.log(props, 'STATES')
   const { userState, eventState } = initialStates
   const initialState = {
     userStore: {...userState,
+      id: user_attr.id,
       email: user_attr.email
     },
     eventStore: {...eventState,
@@ -24,7 +26,8 @@ export default props => {
       title: event_attr.title,
       description: event_attr.description,
       starts_at: event_attr.starts_at,
-      ends_at: event_attr.ends_at
+      ends_at: event_attr.ends_at,
+      questions: event_questions
     }
   }
 

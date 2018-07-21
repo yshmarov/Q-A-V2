@@ -14,6 +14,17 @@ class Event extends Component {
         <div className='event-description'>
           Description: { eventState.description }
         </div>
+
+        <div className='event-questions-container'>
+          Questions:
+          {eventState.questions.map(question => {
+            return (
+              <div key={question.id} className='question-content'>
+                { question.attributes.contents }
+              </div>
+            )
+          })}
+        </div>
       </div>
     )
   }

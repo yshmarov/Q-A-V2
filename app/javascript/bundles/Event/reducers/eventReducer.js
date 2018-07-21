@@ -5,7 +5,8 @@ export const initialState = {
   title: null,
   description: null,
   starts_at: null,
-  ends_at: null
+  ends_at: null,
+  questions: []
 }
 
 export default function (state = initialState, action) {
