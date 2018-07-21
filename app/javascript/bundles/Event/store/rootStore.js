@@ -10,19 +10,21 @@ const DevTools = require('packs/devTools').default
 const isDevEnv = process.env.NODE_ENV === 'development'
 
 export default props => {
-  const { user, event } = props
+  const user_attr = props.user.data.attributes
+  const event_attr = props.event.data.attributes
 
+  console.log(props, 'STATES')
   const { userState, eventState } = initialStates
   const initialState = {
     userStore: {...userState,
-      email: user.email
+      email: user_attr.email
     },
     eventStore: {...eventState,
-      id: event.id,
-      title: event.title,
-      description: event.description,
-      starts_at: event.starts_at,
-      ends_at: event.ends_at
+      id: event_attr.id,
+      title: event_attr.title,
+      description: event_attr.description,
+      starts_at: event_attr.starts_at,
+      ends_at: event_attr.ends_at
     }
   }
 

@@ -4,24 +4,26 @@ import PropTypes from 'prop-types'
 
 class Event extends Component {
   _eventContent() {
+    const { eventState } = this.props
+
     return (
       <div className='event-content'>
         <div className='event-title'>
-          {/* {eventState.title} */}
+          Title: { eventState.title }
         </div>
-        <div className='event-questions-container'>
-          {/* {eventState.questions.map} */}
+        <div className='event-description'>
+          Description: { eventState.description }
         </div>
       </div>
     )
   }
 
   render() {
-    const { userState, eventState } = this.props
+
     const eventContainer = this._eventContent()
 
-    console.log(eventState, 'EVENT STATE')
-    console.log(userState, 'USER STATE')
+    console.log(this.props.eventState, 'EVENT STATE')
+    console.log(this.props.userState, 'USER STATE')
 
     return (
       <div className='event-container'>
