@@ -2,43 +2,86 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-class Event extends Component {
-  _eventContent() {
-    const { eventState } = this.props
+import Question from './Question'
+import submitQuestion from 'actions/submitQuestion'
 
+class Event extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      question_val: '',
+    }
+
+    this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  handleInputChange (event) {
+    this.setState({
+      question_val: event.target.value
+    })
+  }
+
+  handleSubmit (e) {
+    e.preventDefault()
+    this.props.submitQuestion(this.state.question_val)
+  }
+
+  _questionsContainer (questions) {
     return (
-      <div className='event-content'>
+      <div className='event-questions-container'>
+        Questions:
+        { questions.map(question => (
+          <Question
+            key={question.id}
+            contents={question.attributes.contents}
+          />
+        ))}
+      </div>
+    )
+  }
+
+  _questionForm () {
+    return (
+      <div className='event-question-form'>
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type='text'
+            id='question_id'
+            value={this.state.question_val}
+            onChange={this.handleInputChange}
+            placeholder='Do You have a question?'
+            maxLength='100'
+          />
+        </form>
+      </div>
+    )
+  }
+
+  _eventHeader (title, description) {
+    return (
+      <div className='event-header'>
         <div className='event-title'>
-          Title: { eventState.title }
+          Title: { title }
         </div>
         <div className='event-description'>
-          Description: { eventState.description }
-        </div>
-
-        <div className='event-questions-container'>
-          Questions:
-          {eventState.questions.map(question => {
-            return (
-              <div key={question.id} className='question-content'>
-                { question.attributes.contents }
-              </div>
-            )
-          })}
+          Description: { description }
         </div>
       </div>
     )
   }
 
   render() {
-
-    const eventContainer = this._eventContent()
-
+    const { title, description, questions } = this.props.eventState
     console.log(this.props.eventState, 'EVENT STATE')
     console.log(this.props.userState, 'USER STATE')
 
     return (
       <div className='event-container'>
-        { eventContainer }
+        { this._eventHeader(title, description) }
+        { this._questionsContainer(questions) }
+        { this._questionForm() }
       </div>
     )
   }
@@ -46,7 +89,8 @@ class Event extends Component {
 
 Event.propTypes = {
   eventState: PropTypes.object.isRequired,
-  userState: PropTypes.object.isRequired
+  userState: PropTypes.object.isRequired,
+  submitQuestion: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -54,4 +98,8 @@ const mapStateToProps = state => ({
   userState: state.userStore
 })
 
-export default connect(mapStateToProps)(Event)
+const mapDispatchToProps = {
+  submitQuestion
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Event)
