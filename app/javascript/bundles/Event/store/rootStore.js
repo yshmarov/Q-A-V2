@@ -12,7 +12,9 @@ const isDevEnv = process.env.NODE_ENV === 'development'
 export default props => {
   const user_attr = props.user.data.attributes
   const event_attr = props.event.data.attributes
-  const event_questions = props.event.included
+  const event_questions = props.event
+                               .included
+                               .map(question => question.attributes)
 
   console.log(props, 'STATES')
   const { userState, eventState } = initialStates

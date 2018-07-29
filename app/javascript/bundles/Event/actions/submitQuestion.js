@@ -19,9 +19,9 @@ export default (contents, event_id) => dispatch => {
     .catch(error => error)
 }
 
-function submitQuestionSuccess (response) {
+function submitQuestionSuccess (questions) {
   return {
     type: actionTypes.SUBMIT_QUESTION_SUCCESS,
-    payload: response
+    payload: questions
   }
 }

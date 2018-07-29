@@ -38,7 +38,7 @@ class Event extends Component {
         { questions.map(question => (
           <Question
             key={question.id}
-            contents={question.attributes.contents}
+            contents={question.contents}
           />
         ))}
       </div>
