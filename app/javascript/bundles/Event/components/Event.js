@@ -25,7 +25,10 @@ class Event extends Component {
 
   handleSubmit (e) {
     e.preventDefault()
-    this.props.submitQuestion(this.state.question_val)
+    const event_id = this.props.eventState.id
+    const question_val = this.state.question_val
+
+    this.props.submitQuestion(question_val, event_id)
   }
 
   _questionsContainer (questions) {
@@ -74,8 +77,6 @@ class Event extends Component {
 
   render() {
     const { title, description, questions } = this.props.eventState
-    console.log(this.props.eventState, 'EVENT STATE')
-    console.log(this.props.userState, 'USER STATE')
 
     return (
       <div className='event-container'>

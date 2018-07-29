@@ -33,4 +33,6 @@ Rails.application.routes.draw do
   		end
 		end
   end
+
+  post 'api_questions', to: 'api/questions#create'
 end
