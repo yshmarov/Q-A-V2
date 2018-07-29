@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 
 const Question = props => {
   return (
-    <div className='question-content'>
-      <br />
+    <div className='question-content card-header bg-warning'>
       { props.contents }
     </div>
   )

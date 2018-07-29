@@ -1,4 +1,3 @@
-%h1 Event Page
 - if @frontend_events_props[:event].present?
   = redux_store('eventStore', props: @frontend_events_props)
   = react_component('EventApp', props: {}, prerender: false)

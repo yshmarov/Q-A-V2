@@ -34,7 +34,6 @@ class Event extends Component {
   _questionsContainer (questions) {
     return (
       <div className='event-questions-container'>
-        Questions:
         { questions.map(question => (
           <Question
             key={question.id}
@@ -47,31 +46,40 @@ class Event extends Component {
 
   _questionForm () {
     return (
-      <div className='event-question-form'>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type='text'
-            id='question_id'
-            value={this.state.question_val}
-            onChange={this.handleInputChange}
-            placeholder='Do You have a question?'
-            maxLength='100'
-          />
-        </form>
+      <div className='event-question-form card-header bg-warning'>
+          <form onSubmit={this.handleSubmit}>
+            <div className='form-group'>
+              <textarea
+                className='form-control'
+                type='text'
+                id='question_id'
+                value={this.state.question_val}
+                onChange={this.handleInputChange}
+                placeholder='Do You have a question?'
+                maxLength='100'
+              />
+              <input
+                className='btn btn-info add-question-submit'
+                type='submit'
+                name='commit'
+                value='Ask'
+              />
+            </div>
+          </form>
       </div>
     )
   }
 
   _eventHeader (title, description) {
     return (
-      <div className='event-header'>
+      <h2 className='card-header bg-warning'>
         <div className='event-title'>
           Title: { title }
         </div>
         <div className='event-description'>
           Description: { description }
         </div>
-      </div>
+      </h2>
     )
   }
 
@@ -79,10 +87,18 @@ class Event extends Component {
     const { title, description, questions } = this.props.eventState
 
     return (
-      <div className='event-container'>
-        { this._eventHeader(title, description) }
-        { this._questionsContainer(questions) }
-        { this._questionForm() }
+      <div className='row'>
+        <div className='col-lg-2' />
+        <div className='col-lg-8'>
+          <div className='event-container'>
+            <div className='card border-warning'>
+              { this._eventHeader(title, description) }
+              { this._questionsContainer(questions) }
+              { this._questionForm() }
+            </div>
+          </div>
+        </div>
+        <div className='col-lg-2' />
       </div>
     )
   }
