@@ -73,12 +73,7 @@ class Event extends Component {
   _eventHeader (title, description) {
     return (
       <h2 className='card-header bg-warning'>
-        <div className='event-title'>
-          Title: { title }
-        </div>
-        <div className='event-description'>
-          Description: { description }
-        </div>
+        { title }
       </h2>
     )
   }

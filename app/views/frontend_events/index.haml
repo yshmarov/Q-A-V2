@@ -1,5 +1,9 @@
-- if @frontend_events_props[:event].present?
-  = redux_store('eventStore', props: @frontend_events_props)
-  = react_component('EventApp', props: {}, prerender: false)
-- else
-  %h3 No such event. Please double check Your event code.
+= render 'shared/flash_messages' if flash.any?
+
+.event-code-container
+  %h3.event-code-header Please input event code.
+
+  = form_for :event, url: 'frontend_event', method: :get do |f|
+    .form-group
+      = f.text_field :password, class: 'form-control'
+      = f.submit 'Find', class: 'btn btn-warning event-code-btn'
