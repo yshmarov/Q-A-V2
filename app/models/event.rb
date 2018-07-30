@@ -4,6 +4,7 @@ class Event < ApplicationRecord
   belongs_to :user
   has_many :questions
   scope :finito, -> { where("ends_at < ?", Time.zone.now) }
+  scope :active, -> { where('ends_at > ?', Time.zone.now) }
   extend FriendlyId
   friendly_id :password, use: :slugged
 
@@ -19,7 +20,7 @@ class Event < ApplicationRecord
   before_validation :set_password, on: :create
   before_validation :set_default_start_end_time_zone, on: :create
   after_create :add_slug
-  
+
   def status
     if starts_at > Time.now && ends_at > Time.now
       "not started"

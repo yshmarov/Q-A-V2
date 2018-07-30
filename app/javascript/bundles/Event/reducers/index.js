@@ -8,11 +8,7 @@ export const initialStates = {
   userState
 }
 
-const rootReducer = () => {
-  return combineReducers({
-    userStore: userReducer,
-    eventStore: eventReducer
-  })
-}
-
-export default rootReducer
+export default combineReducers({
+  userStore: userReducer,
+  eventStore: eventReducer
+})

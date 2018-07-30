@@ -1,12 +1,22 @@
-import actionTypes from 'constants'
+import actionTypes from 'constants/index'
 
 export const initialState = {
-  name: 'Event Name'
+  id: null,
+  title: null,
+  description: null,
+  starts_at: null,
+  ends_at: null,
+  questions: []
 }
 
 export default function (state = initialState, action) {
   switch (action.type) {
+    case actionTypes.SUBMIT_QUESTION_SUCCESS:
 
+      return {
+        ...state,
+        questions: action.payload
+      }
     default:
       return state
   }
