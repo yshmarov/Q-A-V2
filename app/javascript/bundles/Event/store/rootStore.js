@@ -10,8 +10,7 @@ const DevTools = require('packs/devTools').default
 const isDevEnv = process.env.NODE_ENV === 'development'
 
 export default props => {
-  // when logged out data is nil
-  const user_attr = props.user.data.attributes
+  const user_attr = props.user.data
   const event_attr = props.event.data.attributes
   const event_questions = props.event
                                .included
@@ -20,8 +19,8 @@ export default props => {
   const { userState, eventState } = initialStates
   const initialState = {
     userStore: {...userState,
-      id: user_attr.id,
-      email: user_attr.email
+      id: user_attr && user_attr.attributes && user_attr.attributes.id,
+      email: user_attr && user_attr.attributes && user_attr.attributes.email
     },
     eventStore: {...eventState,
       id: event_attr.id,

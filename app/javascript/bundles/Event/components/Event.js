@@ -38,6 +38,7 @@ class Event extends Component {
           <Question
             key={question.id}
             contents={question.contents}
+            weighted_score={question.weighted_score}
           />
         ))}
       </div>
@@ -72,9 +73,14 @@ class Event extends Component {
 
   _eventHeader (title, description) {
     return (
-      <h2 className='card-header bg-warning'>
-        { title }
-      </h2>
+      <div>
+        <h2 className='card-header bg-warning'>
+          { title }
+        </h2>
+        <h4 className='card-header bg-warning'>
+          { description }
+        </h4>
+      </div>
     )
   }
 
@@ -88,9 +94,9 @@ class Event extends Component {
           <div className='event-container'>
             <div className='card border-warning'>
               { this._eventHeader(title, description) }
-              { this._questionsContainer(questions) }
               { this._questionForm() }
             </div>
+            { this._questionsContainer(questions) }
           </div>
         </div>
         <div className='col-lg-2' />
