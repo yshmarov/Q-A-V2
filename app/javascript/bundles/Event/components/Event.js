@@ -37,6 +37,7 @@ class Event extends Component {
         { questions.map(question => (
           <Question
             key={question.id}
+            id={question.id}
             contents={question.contents}
             weighted_score={question.weighted_score}
           />

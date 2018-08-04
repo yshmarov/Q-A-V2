@@ -12,8 +12,6 @@ export default (contents, event_id) => dispatch => {
   })
     .then(response => response.json())
     .then(response => {
-      console.log('SUCCESS', response)
-
       dispatch(submitQuestionSuccess(response))
     })
     .catch(error => error)
