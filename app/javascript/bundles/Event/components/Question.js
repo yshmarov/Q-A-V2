@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import './question.scss'
+import css from './question.scss'
 
 const Question = props => {
   const { weighted_score } = props
   const voteString = weighted_score === 1 ? 'vote' : 'votes'
 
   return (
-    <div className='question-content card'>
+    <div className={`card ${css.questionContent}`}>
       <div className='card-body row'>
         <div className='col-lg-auto'>
           <div className='col-md-12'>
