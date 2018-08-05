@@ -12,7 +12,11 @@ export const initialState = {
 export default function (state = initialState, action) {
   switch (action.type) {
     case actionTypes.SUBMIT_QUESTION_SUCCESS:
-
+      return {
+        ...state,
+        questions: action.payload
+      }
+    case actionTypes.SUBMIT_VOTE_SUCCESS:
       return {
         ...state,
         questions: action.payload

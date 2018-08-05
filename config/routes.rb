@@ -36,4 +36,5 @@ Rails.application.routes.draw do
   end
 
   post 'api_questions', to: 'api/questions#create'
+  patch 'vote_question', to: 'api/questions#vote'
 end
