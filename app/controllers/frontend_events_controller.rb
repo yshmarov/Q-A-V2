@@ -19,7 +19,7 @@ class FrontendEventsController < ApplicationController
   private
 
   def find_event
-    return unless params[:event].present?
-    @event = Event.active.find_by(password: params[:event][:password])
+    return unless params[:password].present?
+    @event = Event.active.find_by(password: params[:password])
   end
 end
