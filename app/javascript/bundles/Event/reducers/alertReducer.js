@@ -1,25 +1,23 @@
 import actionTypes from 'constants/index'
 
 export const initialState = {
-  id: null,
-  title: null,
-  description: null,
-  starts_at: null,
-  ends_at: null,
-  questions: []
+  shouldBeDisplayed: false,
+  message: '',
+  type: null
 }
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case actionTypes.SUBMIT_QUESTION_SUCCESS:
+    case actionTypes.RESET_SHOULD_BE_DISPLAYED:
       return {
         ...state,
-        questions: action.payload
+        shouldBeDisplayed: false
       }
-    case actionTypes.SUBMIT_VOTE_SUCCESS:
+    case actionTypes.SHOW_ALERT:
       return {
         ...state,
-        questions: action.payload
+        shouldBeDisplayed: true,
+        message: action.message
       }
     default:
       return state

@@ -4,25 +4,25 @@ import headers from 'packs/headers'
 
 import { showAlert } from './alertActions'
 
-export default (contents, event_id) => dispatch => {
+export default (question_id) => dispatch => {
 
-  fetch('/api_questions.json', {
-    method: 'POST',
+  fetch('/vote_question.json', {
+    method: 'PATCH',
     credentials: 'same-origin',
-    body: JSON.stringify({ question: { contents, event_id } }),
+    body: JSON.stringify({ question: { id: question_id } }),
     headers: headers()
   })
     .then(response => response.json())
     .then(response => {
-      dispatch(submitQuestionSuccess(response))
-      dispatch(showAlert('Question submitted!'))
+      dispatch(submitVote(response))
+      dispatch(showAlert('Vote counted!'))
     })
     .catch(error => error)
 }
 
-function submitQuestionSuccess (questions) {
+function submitVote (questions) {
   return {
-    type: actionTypes.SUBMIT_QUESTION_SUCCESS,
+    type: actionTypes.SUBMIT_VOTE_SUCCESS,
     payload: questions
   }
 }
