@@ -16,7 +16,7 @@ export default props => {
                                .included
                                .map(question => question.attributes)
 
-  const { userState, eventState } = initialStates
+  const { userState, eventState, alertState } = initialStates
   const initialState = {
     userStore: {...userState,
       id: user_attr && user_attr.attributes && user_attr.attributes.id,
@@ -29,7 +29,8 @@ export default props => {
       starts_at: event_attr.starts_at,
       ends_at: event_attr.ends_at,
       questions: event_questions
-    }
+    },
+    alertStore: {...alertState}
   }
 
   const store = () => {

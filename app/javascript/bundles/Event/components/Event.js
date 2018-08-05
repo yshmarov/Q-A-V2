@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import { withAlert } from 'react-alert'
 
 import Question from './Question'
+import Alert from './Alert'
 import submitQuestion from 'actions/submitQuestion'
 
 class Event extends Component {
@@ -94,6 +96,7 @@ class Event extends Component {
         <div className='col-lg-8'>
           <div className='event-container'>
             <div className='card border-warning'>
+              <Alert alert={ this.props.alert } />
               { this._eventHeader(title, description) }
               { this._questionForm() }
             </div>
@@ -109,7 +112,8 @@ class Event extends Component {
 Event.propTypes = {
   eventState: PropTypes.object.isRequired,
   userState: PropTypes.object.isRequired,
-  submitQuestion: PropTypes.func.isRequired
+  submitQuestion: PropTypes.func.isRequired,
+  alert: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -121,4 +125,4 @@ const mapDispatchToProps = {
   submitQuestion
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Event)
+export default withAlert(connect(mapStateToProps, mapDispatchToProps)(Event))
