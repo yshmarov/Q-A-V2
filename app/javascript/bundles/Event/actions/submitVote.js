@@ -2,9 +2,9 @@ import actionTypes from 'constants'
 import ReactOnRails from 'react-on-rails'
 import headers from 'packs/headers'
 
-export default (question_id) => dispatch => {
+import { showAlert } from './alertActions'
 
-  console.log(question_id, 'SUBMITTED ID')
+export default (question_id) => dispatch => {
 
   fetch('/vote_question.json', {
     method: 'PATCH',
@@ -14,8 +14,8 @@ export default (question_id) => dispatch => {
   })
     .then(response => response.json())
     .then(response => {
-      console.log(response, 'SUCCESSS')
       dispatch(submitVote(response))
+      dispatch(showAlert('Vote counted!'))
     })
     .catch(error => error)
 }

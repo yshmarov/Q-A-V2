@@ -2,6 +2,8 @@ import actionTypes from 'constants'
 import ReactOnRails from 'react-on-rails'
 import headers from 'packs/headers'
 
+import { showAlert } from './alertActions'
+
 export default (contents, event_id) => dispatch => {
 
   fetch('/api_questions.json', {
@@ -13,6 +15,7 @@ export default (contents, event_id) => dispatch => {
     .then(response => response.json())
     .then(response => {
       dispatch(submitQuestionSuccess(response))
+      dispatch(showAlert('Question submitted!'))
     })
     .catch(error => error)
 }
