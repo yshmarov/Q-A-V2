@@ -10,10 +10,12 @@ module Api
     def vote
       question = Question.find_by(id: question_params[:id])
 
-      if question.upvote_by current_user
+      if current_user.voted_for? question
+        json_response({ error: 'Already voted.' }, :unprocessable_entity)
+      elsif question.upvote_by current_user
         json_response(serialized_questions(question.event), :created)
       else
-        json_response({ error: 'Something went wrong' }, 400)
+        json_response({ error: 'Something went wrong.' }, :unprocessable_entity)
       end
     end
 
