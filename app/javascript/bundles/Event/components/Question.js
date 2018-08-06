@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import css from './question.scss'
+import './question.scss'
 
 import submitVote from 'actions/submitVote'
 
@@ -21,7 +21,7 @@ class Question extends Component {
     const voteString = weighted_score === 1 ? 'vote' : 'votes'
 
     return (
-      <div className={`card ${css.questionContent}`}>
+      <div className={'card questionContent'}>
         <div className='card-body row'>
           <div className='col-lg-auto'>
             <div className='col-md-12' onClick={this.handleVoteSubmit}>

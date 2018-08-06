@@ -3,7 +3,7 @@
 .event-code-container
   %h3.event-code-header Please input event code.
 
-  = form_for :event, url: 'frontend_event', method: :get do |f|
+  = form_tag 'q', enforce_utf8: false, method: :get do
     .form-group
-      = f.text_field :password, class: 'form-control'
-      = f.submit 'Find', class: 'btn btn-warning event-code-btn'
+      = text_field_tag :password, nil, class: 'form-control'
+      = submit_tag 'Find', class: 'btn btn-warning event-code-btn', name: nil

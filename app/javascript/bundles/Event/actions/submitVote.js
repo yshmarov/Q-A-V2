@@ -12,12 +12,18 @@ export default (question_id) => dispatch => {
     body: JSON.stringify({ question: { id: question_id } }),
     headers: headers()
   })
-    .then(response => response.json())
     .then(response => {
-      dispatch(submitVote(response))
-      dispatch(showAlert('Vote counted!'))
+      if (response.ok) {
+        return response.json().then(res => {
+          dispatch(submitVote(res))
+          dispatch(showAlert('Vote counted!'))
+        })
+      } else {
+        return response.json().then(res => {
+          dispatch(showAlert(res.error))
+        })
+      }
     })
-    .catch(error => error)
 }
 
 function submitVote (questions) {
