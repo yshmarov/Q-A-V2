@@ -21,6 +21,10 @@ class Event < ApplicationRecord
   before_validation :set_default_start_end_time_zone, on: :create
   after_create :add_slug
 
+  def active?
+    ends_at > Time.zone.now
+  end
+
   def status
     if starts_at > Time.now && ends_at > Time.now
       "not started"

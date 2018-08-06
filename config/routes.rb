@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   # frontend app
   get 'frontend_events', to: 'frontend_events#index'
-  get 'ask_event', to: 'frontend_events#show'
+  get 'q', to: 'frontend_events#show'
   resources :questions, only: [:create, :edit, :update, :destroy] do
     member do
       put 'upvote', to: 'questions#upvote'

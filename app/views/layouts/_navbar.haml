@@ -1,6 +1,9 @@
 %nav.navbar.navbar-expand-lg.navbar-dark.bg-warning.justify-content-between
-  %form.form-inline.my-2.my-lg-0
-    %input.form-control.mr-sm-2{"aria-label" => "Search", :placeholder => "Enter Event Title", :type => "search"}/
+  = form_tag 'q', enforce_utf8: false, method: :get, class: 'form-inline my-2 my-lg-0' do
+    .form-group
+      = text_field_tag :password, nil, class: 'form-control mr-sm-2', placeholder: 'Enter Event Code'
+      = submit_tag 'Find', class: 'btn', name: nil
+
     %button.btn.btn-outline-dark.my-2.my-sm-0{:type => "submit"} Join!
 %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.sticky-top
   %a.navbar-brand{:href => "/"}
