@@ -4,17 +4,23 @@ import { connect } from 'react-redux'
 import './question.scss'
 
 import submitVote from 'actions/submitVote'
+import deleteQuestion from 'actions/deleteQuestion'
 
 class Question extends Component {
   constructor (props) {
     super(props)
 
     this.handleVoteSubmit = this.handleVoteSubmit.bind(this)
+    this.handleQuestionDelete = this.handleQuestionDelete.bind(this)
     this.isMyQuestion = this.isMyQuestion.bind(this)
   }
 
   handleVoteSubmit() {
     this.props.submitVote(this.props.id)
+  }
+
+  handleQuestionDelete() {
+    this.props.deleteQuestion(this.props.id)
   }
 
   isMyQuestion() {
@@ -48,7 +54,7 @@ class Question extends Component {
             { contents }
           </div>
           {
-            canRemove && <div className='col-md-2'>
+            canRemove && <div onClick={this.handleQuestionDelete} className='col-md-2'>
               Remove
             </div>
           }
@@ -63,6 +69,7 @@ Question.propTypes = {
   contents: PropTypes.string.isRequired,
   weightedScore: PropTypes.number.isRequired,
   submitVote: PropTypes.func.isRequired,
+  deleteQuestion: PropTypes.func.isRequired,
   sessionId: PropTypes.number,
   userId: PropTypes.number,
   sessionState: PropTypes.object,
@@ -75,7 +82,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  submitVote
+  submitVote,
+  deleteQuestion
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Question)

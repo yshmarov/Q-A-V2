@@ -1,23 +1,22 @@
 import actionTypes from 'constants'
 import ReactOnRails from 'react-on-rails'
 import headers from 'packs/headers'
-import FleshMessage from 'react-flash-message'
 
 import { showAlert } from './alertActions'
 
-export default (question_id) => dispatch => {
+export default (questionId) => dispatch => {
 
-  fetch('/vote_question.json', {
-    method: 'PATCH',
+  fetch('/delete_question.json', {
+    method: 'DELETE',
     credentials: 'same-origin',
-    body: JSON.stringify({ question: { id: question_id } }),
+    body: JSON.stringify({ question: { id: questionId } }),
     headers: headers()
   })
     .then(response => {
       if (response.ok) {
         return response.json().then(res => {
-          dispatch(submitVote(res))
-          dispatch(showAlert('Vote counted!'))
+          dispatch(deleteQuestionSuccess(res))
+          dispatch(showAlert('Question Removed!'))
         })
       } else {
         return response.json().then(res => {
@@ -27,9 +26,9 @@ export default (question_id) => dispatch => {
     })
 }
 
-function submitVote (questions) {
+function deleteQuestionSuccess (questions) {
   return {
-    type: actionTypes.SUBMIT_VOTE_SUCCESS,
+    type: actionTypes.QUESTION_DELETE_SUCCESS,
     payload: questions
   }
 }
