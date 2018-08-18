@@ -1,7 +1,6 @@
 import actionTypes from 'constants'
 import ReactOnRails from 'react-on-rails'
 import headers from 'packs/headers'
-import FleshMessage from 'react-flash-message'
 
 import { showAlert } from './alertActions'
 

@@ -31,6 +31,9 @@ class Event extends Component {
     const question_val = this.state.question_val
 
     this.props.submitQuestion(question_val, event_id)
+    this.setState({
+      question_val: ''
+    })
   }
 
   _questionsContainer (questions) {
