@@ -10,25 +10,31 @@ const DevTools = require('packs/devTools').default
 const isDevEnv = process.env.NODE_ENV === 'development'
 
 export default props => {
-  const user_attr = props.user.data
-  const event_attr = props.event.data.attributes
-  const event_questions = props.event
-                               .included
-                               .map(question => question.attributes)
+  const userAttr = props.user.data
+  const eventAttr = props.event.data.attributes
+  const sessionAttr = props.session.data
+  const eventQuestionsAttr = props.event
+                                  .included
+                                  .map(question => question.attributes)
 
-  const { userState, eventState, alertState } = initialStates
+  const { userState, eventState, alertState, sessionState } = initialStates
+
   const initialState = {
     userStore: {...userState,
-      id: user_attr && user_attr.attributes && user_attr.attributes.id,
-      email: user_attr && user_attr.attributes && user_attr.attributes.email
+      id: userAttr && userAttr.attributes && userAttr.attributes.id,
+      email: userAttr && userAttr.attributes && userAttr.attributes.email
     },
     eventStore: {...eventState,
-      id: event_attr.id,
-      title: event_attr.title,
-      description: event_attr.description,
-      starts_at: event_attr.starts_at,
-      ends_at: event_attr.ends_at,
-      questions: event_questions
+      id: eventAttr.id,
+      title: eventAttr.title,
+      description: eventAttr.description,
+      starts_at: eventAttr.starts_at,
+      ends_at: eventAttr.ends_at,
+      questions: eventQuestionsAttr
+    },
+    sessionStore: {...sessionState,
+      id: sessionAttr && sessionAttr.attributes && sessionAttr.attributes.id,
+      ip: sessionAttr && sessionAttr.attributes && sessionAttr.attributes.ip
     },
     alertStore: {...alertState}
   }
