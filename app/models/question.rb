@@ -1,6 +1,7 @@
 class Question < ApplicationRecord
   belongs_to :event
   belongs_to :user, optional: true
+  belongs_to :session, optional: true
 
   before_save :validate_if_active
 

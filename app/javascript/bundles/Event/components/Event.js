@@ -31,9 +31,13 @@ class Event extends Component {
     const question_val = this.state.question_val
 
     this.props.submitQuestion(question_val, event_id)
+    this.setState({
+      question_val: ''
+    })
   }
 
   _questionsContainer (questions) {
+
     return (
       <div className='event-questions-container'>
         { questions.map(question => (
@@ -41,7 +45,9 @@ class Event extends Component {
             key={question.id}
             id={question.id}
             contents={question.contents}
-            weighted_score={question.weighted_score}
+            weightedScore={question.weighted_score}
+            sessionId={question.session_id}
+            userId={question.user_id}
           />
         ))}
       </div>

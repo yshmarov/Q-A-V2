@@ -21,6 +21,11 @@ export default function (state = initialState, action) {
         ...state,
         questions: action.payload
       }
+    case actionTypes.QUESTION_DELETE_SUCCESS:
+      return {
+        ...state,
+        questions: action.payload
+      }
     default:
       return state
   }

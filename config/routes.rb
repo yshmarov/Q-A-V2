@@ -36,4 +36,5 @@ Rails.application.routes.draw do
 
   post 'api_questions', to: 'api/questions#create'
   patch 'vote_question', to: 'api/questions#vote'
+  delete 'delete_question', to: 'api/questions#delete'
 end

@@ -4,36 +4,60 @@ import { connect } from 'react-redux'
 import './question.scss'
 
 import submitVote from 'actions/submitVote'
+import deleteQuestion from 'actions/deleteQuestion'
 
 class Question extends Component {
   constructor (props) {
     super(props)
 
     this.handleVoteSubmit = this.handleVoteSubmit.bind(this)
+    this.handleQuestionDelete = this.handleQuestionDelete.bind(this)
+    this.isMyQuestion = this.isMyQuestion.bind(this)
   }
 
   handleVoteSubmit() {
     this.props.submitVote(this.props.id)
   }
 
+  handleQuestionDelete() {
+    this.props.deleteQuestion(this.props.id)
+  }
+
+  isMyQuestion() {
+    // check if question belongs to user for logged in and a guest
+    if (this.props.userState.id === null) {
+      return (this.props.sessionId === this.props.sessionState.id)
+    } else {
+      return (this.props.userId === this.props.userState.id)
+    }
+  }
+
   render() {
-    const { weighted_score, contents } = this.props
-    const voteString = weighted_score === 1 ? 'vote' : 'votes'
+    const { weightedScore, contents } = this.props
+    const voteString = weightedScore === 1 ? 'vote' : 'votes'
+
+    const canRemove = this.isMyQuestion()
 
     return (
       <div className={'card questionContent'}>
         <div className='card-body row'>
-          <div className='col-lg-auto'>
+          <div className='col-md-2'>
             <div className='col-md-12' onClick={this.handleVoteSubmit}>
               <i className='fa fa-thumbs-up' />
             </div>
             <span>
-              { `${weighted_score} ${voteString}` }
+              { `${weightedScore} ${voteString}` }
             </span>
+
           </div>
-          <div className='col-lg'>
+          <div className='col-md-8'>
             { contents }
           </div>
+          {
+            canRemove && <div onClick={this.handleQuestionDelete} className='col-md-2'>
+              Remove
+            </div>
+          }
         </div>
       </div>
     )
@@ -43,12 +67,23 @@ class Question extends Component {
 Question.propTypes = {
   id: PropTypes.number.isRequired,
   contents: PropTypes.string.isRequired,
-  weighted_score: PropTypes.number.isRequired,
-  submitVote: PropTypes.func.isRequired
+  weightedScore: PropTypes.number.isRequired,
+  submitVote: PropTypes.func.isRequired,
+  deleteQuestion: PropTypes.func.isRequired,
+  sessionId: PropTypes.number,
+  userId: PropTypes.number,
+  sessionState: PropTypes.object,
+  userState: PropTypes.object
 }
+
+const mapStateToProps = state => ({
+  sessionState: state.sessionStore,
+  userState: state.userStore
+})
 
 const mapDispatchToProps = {
-  submitVote
+  submitVote,
+  deleteQuestion
 }
 
-export default connect(null, mapDispatchToProps)(Question)
+export default connect(mapStateToProps, mapDispatchToProps)(Question)
