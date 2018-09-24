@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import './question.scss'
+import 'styles/question.scss'
 
 import submitVote from 'actions/submitVote'
 import deleteQuestion from 'actions/deleteQuestion'
@@ -39,7 +39,7 @@ class Question extends Component {
     const canRemove = this.isMyQuestion()
 
     return (
-      <div className={'card questionContent'}>
+      <div className={'card question-content'}>
         <div className='card-body row'>
           <div className='col-md-2'>
             <div className='col-md-12' onClick={this.handleVoteSubmit}>
@@ -55,7 +55,7 @@ class Question extends Component {
           </div>
           {
             canRemove && <div onClick={this.handleQuestionDelete} className='col-md-2'>
-              Remove
+              <i className='fa fa-trash question-trash-icon' />
             </div>
           }
         </div>

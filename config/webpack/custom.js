@@ -21,6 +21,7 @@ module.exports = {
       constants: path.join(process.cwd(), 'app/javascript/bundles/Event', 'constants'),
       reducers: path.join(process.cwd(), 'app/javascript/bundles/Event', 'reducers'),
       store: path.join(process.cwd(), 'app/javascript/bundles/Event', 'store'),
+      styles: path.join(process.cwd(), 'app/javascript/bundles/Event', 'styles'),
       packs: path.join(process.cwd(), 'app/javascript', 'packs')
     }
   }

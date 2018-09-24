@@ -6,6 +6,7 @@ import { withAlert } from 'react-alert'
 import Question from './Question'
 import Alert from './Alert'
 import submitQuestion from 'actions/submitQuestion'
+import 'styles/event'
 
 class Event extends Component {
   constructor (props) {
@@ -69,7 +70,7 @@ class Event extends Component {
                 maxLength='100'
               />
               <input
-                className='btn btn-info add-question-submit'
+                className='btn add-question-submit event-ask-btn'
                 type='submit'
                 name='commit'
                 value='Ask'
